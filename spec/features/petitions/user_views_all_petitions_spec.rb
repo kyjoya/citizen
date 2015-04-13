@@ -7,9 +7,7 @@ feature 'user sees all petitions for a state' do
 
     user = FactoryGirl.create(:user)
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    sign_in_as(user)
   end
 
   scenario 'user visits petition link on specific state page and sees all petitions' do
