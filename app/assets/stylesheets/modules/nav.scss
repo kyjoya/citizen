@@ -1,0 +1,21 @@
+@import 'variables';
+
+.top-bar {
+  background: $main;
+  margin-bottom: 0;
+  font-variant: small-caps;
+  letter-spacing: .1em;
+  margin-top: .3em;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  font-size: 1em;
+  line-height: 3em;
+  background: $main;
+  color: $navyblue;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover{
+  color: $highlight-color;
+  height: 3em;
+}

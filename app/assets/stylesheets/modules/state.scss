@@ -1,0 +1,12 @@
+@import 'variables';
+
+#state_header h1 {
+  font-family: $h1-font;
+  text-align: center;
+  margin-top: 1em;
+}
+
+#state_links li {
+  font-family: $main-font;
+  text-aling: center;
+}

@@ -1,0 +1,6 @@
+<h1>All Petitions</h1>
+<% @petitions.each do |petition| %>
+  <%= petition.name %>
+  <%= petition.description  %>
+  <%= petition.owner_id %>
+<% end %>
