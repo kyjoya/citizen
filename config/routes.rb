@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :states, only: [:show] do
-    resources :petitions, only: [:index]
+    resources :petitions
   end
+
 end

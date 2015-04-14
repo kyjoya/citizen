@@ -11,8 +11,8 @@ feature 'user sees all petitions for a state' do
   end
 
   scenario 'user visits petition link on specific state page and sees all petitions' do
-    petition = FactoryGirl.create(:petition)
     state = FactoryGirl.create(:state)
+    petition = FactoryGirl.create(:petition)
 
     visit state_petitions_path(state)
 
