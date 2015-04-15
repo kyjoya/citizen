@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
 
+  namespace :admin do
+      resources :petitions, only: [:index, :destroy]
+      resources :users, only: [:edit, :update, :destroy]
+  end
+
   resources :states, only: [:show] do
     resources :petitions
   end

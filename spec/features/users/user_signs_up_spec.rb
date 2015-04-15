@@ -15,6 +15,9 @@ feature 'user registers', %Q{
   scenario 'provide valid registration information' do
     visit new_user_registration_path
 
+    fill_in 'First name', with: 'Kylee'
+    fill_in 'Last name', with: 'Acker'
+    fill_in 'Username', with: 'kyjoya'
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'

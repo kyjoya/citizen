@@ -24,7 +24,7 @@ feature 'user can create a new petition' do
     expect(page).to have_content("Added")
   end
 
-  scenario 'user creats invalid petition for others to sing' do
+  scenario 'user creates invalid petition for others to sing' do
     state = FactoryGirl.create(:state)
 
     visit state_petitions_path(state)

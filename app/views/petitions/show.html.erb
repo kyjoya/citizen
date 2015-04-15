@@ -1,2 +1,7 @@
 <h1>A Petition</h1>
 <%= @petition.name %>
+<%= @petition.users %>
+
+<div class="button">
+  <%= link_to 'Sign Petition', new_state_petition_membership_path %>
+</div>
