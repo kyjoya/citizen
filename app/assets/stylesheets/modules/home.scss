@@ -4,27 +4,18 @@ body {
   background-color: $main;
 }
 
-.header_area {
-  text-align: center;
-}
-
-.header-area h1 a {
+.row h1 a {
   color: $navyblue;
   font-family: $h1-font;
   font-variant: small-caps;
   letter-spacing: .1em;
+  text-align: center;
 }
 
 #vmap {
   padding: 0;
   border-top: .1em solid #E74C3C;
   border-bottom: .1em solid #E74C3C;
-}
-
-.divider_bottom {
-  height: 25em;
-  color: $navyblue;
-  margin-top: 0;
 }
 
 .divider_bottom p {
@@ -37,4 +28,12 @@ body {
   font-family: $h1-font;
   font-variant: small-caps;
   font-size: 2em;
+}
+
+.button {
+  background-color: $red;
+    a {
+      color: $main;
+      font-family: $main-font;
+    }
 }

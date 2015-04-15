@@ -6,7 +6,22 @@
   margin-top: 1em;
 }
 
-#state_links li {
+.inline-list li {
   font-family: $main-font;
-  text-aling: center;
+  text-align: center;
+}
+
+#state_info {
+  height: 35em;
+  border: 1px solid $navyblue;
+}
+
+#state_chart {
+  height: 35em;
+  border: 1px solid $red;
+}
+
+#state_footer {
+  height: 15em;
+  border: 1px solid $lightblue;
 }
