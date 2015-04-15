@@ -14,7 +14,7 @@ FactoryGirl.define do
   factory :petition do
     name "A petition to save the world"
     description "I would like you to sign this so I can save the world."
-    owner_id 1
+    owner_id 1 
     state
   end
 end

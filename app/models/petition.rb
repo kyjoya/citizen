@@ -1,6 +1,6 @@
 class Petition < ActiveRecord::Base
   belongs_to :state
-  belongs_to :user
+  has_one :owner, class_name: "User", foreign_key: "owner_id"
 
   validates :name, presence: true
   validates :description, presence: true

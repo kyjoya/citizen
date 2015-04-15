@@ -1,5 +1,5 @@
 <div class="small-12 columns">
-  <h1>All Petitions</h1>
+  <h1><%= @state.name %> Petitions</h1>
 
   <div class="small-12 columns">
     <% if current_user %>
@@ -10,8 +10,7 @@
   <div class="small-12 small-offset-1 columns">
     <% if @petitions %>
       <% @petitions.each do |petition| %>
-      <%binding.pry%>
-        <%= petition.name %>
+        <%= link_to petition.name, state_petition_path(id: petition) %>
         <%= petition.description  %>
         <%= petition.owner_id %>
       <% end %>

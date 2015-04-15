@@ -3,7 +3,6 @@ class PetitionsController < ApplicationController
     @state = State.find_by(name: params[:state_id])
     @petitions = @state.petitions.limit(10)#Petition.limit(10).where(state_id: params[:state_id])
     @petition = Petition.new
-
   end
 
   def new
@@ -23,7 +22,27 @@ class PetitionsController < ApplicationController
   end
 
   def show
+    @petition = Petition.find(params[:id])
+  end
 
+  def edit
+    @petition = Petition.find(params[:id])
+    @state = State.find_by(id: params[:state_id])
+  end
+
+  def update
+    @petition = Petition.find(params[:id])
+    if @petition.update(petition_params)
+      redirect_to user_path, notice: "Petition updated!"
+    else
+      render :edit, notice: "No"
+    end
+  end
+
+  def destroy
+    @petition = Petition.find(params[:id])
+    @petition.destroy
+    redirect_to user_path
   end
 
   def petition_params
