@@ -1,0 +1,13 @@
+@import 'variables';
+
+#profile {
+  font-family: $h1-font;
+    p {
+      font-size: 2em;
+    }
+}
+
+#profile .button {
+  float: right;
+  margin: .2em;
+}

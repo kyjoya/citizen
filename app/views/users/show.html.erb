@@ -1,0 +1,15 @@
+<div class="small-12 columns" id="profile">
+  <p><%= @user.email %></p>
+
+  <% @owned_petitions.each do |petition| %>
+    <div class="inline-list">
+      <li><%= petition.name %></li>
+      <div class="button">
+        <%= link_to "Edit Petition", edit_state_petition_path(id: petition, state_id: petition.id) %>
+      </div>
+      <div class="button">
+        <%= link_to "Delete Petition", state_petition_path(id: petition, state_id: petition.id), method: :delete %>
+      </div>
+    </div>
+    <% end %>
+</div>
