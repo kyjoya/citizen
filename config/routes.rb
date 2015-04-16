@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     resources :petitions
   end
 
+  resources :petitions, only: [:show, :index] do
+    resources :memberships, only: [:create, :destroy]
+  end
 end

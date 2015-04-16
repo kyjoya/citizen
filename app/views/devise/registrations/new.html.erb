@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= f.label :affiliation %><br />
-    <%= f.text_field :affiliation, autofocus: true %>
+    <%= f.select :affiliation, options_for_select(["Democrat", "Republican", "Independent", "Undecided"]), prompt: "Optional" %>
   </div>
 
   <div class="actions">

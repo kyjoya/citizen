@@ -1,4 +1,12 @@
 <div class="small-12 columns">
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="small-12 columns">
   <%= form_for [@state, @petition] do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>

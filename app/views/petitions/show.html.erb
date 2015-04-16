@@ -1,7 +1,22 @@
-<h1>A Petition</h1>
-<%= @petition.name %>
-<%= @petition.users %>
+<h4><%= link_to "#{@petition.state.name} Petitions", state_petitions_path %></h4>
+<h4><%= link_to "#{@petition.state.name} Home", state_path(id: params[:state_id]) %></h4>
 
-<div class="button">
-  <%= link_to 'Sign Petition', new_state_petition_membership_path %>
+<%= @petition.name %>
+
+<% if !@petition.users.include?(current_user) %>
+  <div class="button">
+    <%= link_to 'Sign Petition', petition_memberships_path(petition_id: params[:id],
+          user_id: current_user.id, state_id: params[:state_id]), method: :post %>
+  </div>
+<% end %>
+
+<div class="small-12 columns">
+  <% if @petition.users.include?(current_user) %>
+    <% @petition.users.each do |name| %>
+      <%= name.first_name %>
+      <%= name.last_name %>
+      <%= link_to 'Delete Signature',  petition_memberships_path(petition_id: params[:id],
+            user_id: current_user.id, state_id: params[:state_id]), method: :delete %>
+    <% end %>
+  <% end %>
 </div>

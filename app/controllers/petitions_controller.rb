@@ -1,8 +1,12 @@
 class PetitionsController < ApplicationController
   def index
     @state = State.find_by(name: params[:state_id])
-    @petitions = @state.petitions.limit(10)#Petition.limit(10).where(state_id: params[:state_id])
-    @petition = Petition.new
+    if @state
+      @petitions = @state.petitions.limit(10)#Petition.limit(10).where(state_id: params[:state_id])
+      @petition = Petition.new
+    else
+      @petitions = Petition.limit(20)
+    end
   end
 
   def new
@@ -32,10 +36,12 @@ class PetitionsController < ApplicationController
 
   def update
     @petition = Petition.find(params[:id])
-    if @petition.update(petition_params)
+    @petition.update_attributes(petition_params)
+    if @petition.save
       redirect_to user_path, notice: "Petition updated!"
     else
-      render :edit, notice: "No"
+      @errors = @petition.errors.full_messages
+      render :edit
     end
   end
 
