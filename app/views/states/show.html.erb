@@ -1,24 +1,18 @@
 <div class="small-12 columns" id="state_header">
-  <div class="state_pic">
     <h1><%= @state.name %></h1>
-  </div>
 
-  <div class="inline-list" id="state_links">
-    <li><%= link_to 'Petitions', state_petitions_path(params[:id]) %></li>
-    <li>Voter Registration</li>
-  </div>
+    <div class="inline-list" id="state_links">
+      <li><%= link_to 'Petitions', state_petitions_path(params[:id]) %></li>
+      <li>Voter Registration</li>
+    </div>
 </div>
 
 <div class="small-12 columns">
   <div class="small-4 columns" id="state_info">
-    stuff
+    <%= @state_info %>
   </div>
 
   <div class="small-8 columns" id="state_chart">
     something cool
-  </div>
-
-  <div class="small-12 columns" id="state_footer">
-    other things
   </div>
 </div>

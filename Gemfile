@@ -9,7 +9,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'carrierwave'
-gem "mini_magick"
 
 group :development, :test do
   gem 'byebug'
@@ -21,6 +20,7 @@ group :test do
   gem 'coveralls', require: false
 end
 
+gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]
 gem 'launchy', group: [:development, :test]
