@@ -1,5 +1,8 @@
 <div class="small-12 columns" id="profile">
-  <p><%= @user.email %></p>
+  <div class="inline-list">
+    <li><%= @user.email %></li>
+    <li><%= image_tag @user.image.url, size: "60x60" %></li>
+  </div>
 
   <% @owned_petitions.each do |petition| %>
     <div class="inline-list">

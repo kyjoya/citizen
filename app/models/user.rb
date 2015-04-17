@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :petition
   has_many :memberships
   has_many :petitions, through: :memberships
+  mount_uploader :image, ProfilePhotoUploader
 
   ROLES = %w(member admin)
 
@@ -15,13 +16,5 @@ class User < ActiveRecord::Base
 
   def admin?
    role == 'admin'
-  end
-
-  def editable_by?(user)
-   user.admin?
-  end
-
-  def destroyable_by?(user)
-   user.admin?
   end
 end

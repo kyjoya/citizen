@@ -3,6 +3,7 @@ class Petition < ActiveRecord::Base
   has_one :owner, class_name: "User", foreign_key: "owner_id"
   has_many :memberships
   has_many :users, through: :memberships
+  mount_uploader :image, PetitionPhotoUploader
 
   validates :name, presence: true
   validates :description, presence: true

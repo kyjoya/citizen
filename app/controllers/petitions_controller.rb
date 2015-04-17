@@ -52,6 +52,6 @@ class PetitionsController < ApplicationController
   end
 
   def petition_params
-    params.require(:petition).permit(:name, :description)
+    params.require(:petition).permit(:name, :description, :image)
   end
 end

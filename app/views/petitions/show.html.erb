@@ -2,6 +2,7 @@
 <h4><%= link_to "#{@petition.state.name} Home", state_path(id: params[:state_id]) %></h4>
 
 <%= @petition.name %>
+<%= image_tag @petition.image.url, size: "300x300" %>
 
 <% if !@petition.users.include?(current_user) %>
   <div class="button">
