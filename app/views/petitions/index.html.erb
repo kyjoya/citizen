@@ -11,7 +11,10 @@
   <div class="small-8 columns" id="all_petitions">
     <% if @petitions %>
       <% @petitions.each do |petition| %>
-        <h2><%= link_to petition.name, state_petition_path(id: petition, state_id: petition.state) %></h2>
+        <h2>
+          <%= link_to petition.name,
+          state_petition_path(id: petition, state_id: petition.state) %>
+        </h2>
         <%= petition.description  %>
         <%= petition.owner_id %>
       <% end %>
