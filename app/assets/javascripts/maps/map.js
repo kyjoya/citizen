@@ -8,10 +8,7 @@ function buildMap() {
         color: '#2C3E50',
         hoverColor: '#E74C3C',
         selectedColor: '#FFFFFF',
-        showTooltips: true,
-        onRegionLabelShow:  function (el, code, region) {
-          tooltip(el, code);
-        },
+        enableZoom: false,
         onRegionClick: function (event, code, region) {
           color: '#FFFFFF',
           console.log(code)
@@ -19,9 +16,4 @@ function buildMap() {
         }
     });
   });
-}
-
-function tooltip(el, code) {
-  region = code
-  el.html(el.html() + region)
 }

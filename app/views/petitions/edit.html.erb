@@ -1,10 +1,8 @@
-<div class="small-12 columns">
-  <% if @errors %>
-    <% @errors.each do |error| %>
-      <%= error %>
-    <% end %>
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <%= error %>
   <% end %>
-</div>
+<% end %>
 
 <div class="small-12 columns">
   <%= form_for [@state, @petition] do |f| %>
