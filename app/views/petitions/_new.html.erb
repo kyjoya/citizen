@@ -1,5 +1,5 @@
 <div class="small-12 columns">
-  <%= form_for [@state, @petition] do |f| %>
+  <%= form_for [@state, @petition || Petition.new] do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
 

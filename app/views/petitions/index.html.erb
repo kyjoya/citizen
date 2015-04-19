@@ -1,7 +1,17 @@
 <div class="small-12 columns" id="petition_heading">
   <% if @state %>
     <h1><%= @state.name %> Petitions</h1>
+  <% else %>
+    <h1><%= link_to "All Petitions", petitions_path %></h1>
   <% end %>
+
+<div class="small-4 small-centered columns">
+  <%= form_tag petitions_path, method: :get do  %>
+    <%= text_field_tag :search %>
+    <%= submit_tag "Search Petitions" %>
+  <% end %>
+</div>
+
   <div class="small-4 columns" id="new_petition">
     <% if current_user && @state %>
       <%= render 'petitions/new' %>

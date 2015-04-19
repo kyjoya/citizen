@@ -9,7 +9,6 @@ class MembershipsController < ApplicationController
 
   def destroy
     binding.pry
-    @membership
   end
 
 end

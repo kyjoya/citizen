@@ -1,5 +1,13 @@
 <h4><%= link_to "#{@petition.state.name} Petitions", state_petitions_path %></h4>
 <h4><%= link_to "#{@petition.state.name} Home", state_path(id: params[:state_id]) %></h4>
+<h4><%= link_to "All Petitions", petitions_path %></h4>
+
+<div class="small-4 small-centered columns">
+  <%= form_tag petitions_path, method: :get do  %>
+    <%= text_field_tag :search_state %>
+    <%= submit_tag "Search Petitions" %>
+  <% end %>
+</div>
 
 <%= @petition.name %>
 <%= image_tag @petition.image.url, size: "300x300" %>
@@ -16,8 +24,6 @@
     <% @petition.users.each do |name| %>
       <%= name.first_name %>
       <%= name.last_name %>
-      <%= link_to 'Delete Signature',  petition_memberships_path(petition_id: params[:id],
-            user_id: current_user.id, state_id: params[:state_id]), method: :delete %>
     <% end %>
   <% end %>
 </div>

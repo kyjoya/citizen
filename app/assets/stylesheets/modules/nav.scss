@@ -1,21 +1,33 @@
 @import 'variables';
 
 .top-bar {
-  background: $main;
-  margin-bottom: 0;
+  background: $offwhite;
   font-family: $main-font;
-  letter-spacing: .1em;
-  margin-top: .3em;
+  margin-bottom: 0;
+  margin-top: 0;
+  height: 3.5em;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
-  font-size: 1em;
-  line-height: 3em;
-  background: $main;
+  font-size: .8em;
+  background: $offwhite;
   color: $navyblue;
+  font-family: $main-font;
+  height: 5%;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button):hover{
   color: $highlight-color;
-  height: 3em;
+}
+
+#logo a {
+  margin-left: 47%;
+  margin-right: 50%;
+  font-family: $h1-font;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: .1em;
+  color: $navyblue;
+  position: absolute;
+  margin-top: .2em;
 }

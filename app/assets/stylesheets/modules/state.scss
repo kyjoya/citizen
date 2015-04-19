@@ -1,9 +1,15 @@
 @import 'variables';
 
+#state_header {
+  height: 20em;
+  border-bottom: 1px solid $red;
+  border-top: 1px solid $red;
+}
+
 #state_header h1 {
   font-family: $h1-font;
   text-align: center;
-  margin-top: 1em;
+  margin-top: 15%;
 }
 
 .inline-list li {
@@ -11,17 +17,22 @@
   text-align: center;
 }
 
+#state_container {
+  width: 100%;
+  height: 35em;
+}
+
 #state_info {
   height: 35em;
+  overflow-y: scroll;
+  overflow-x: hidden;
   border: 1px solid $navyblue;
+    p {
+      width: 100%;
+    }
 }
 
 #state_chart {
   height: 35em;
   border: 1px solid $red;
-}
-
-#state_footer {
-  height: 15em;
-  border: 1px solid $lightblue;
 }

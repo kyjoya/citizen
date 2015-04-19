@@ -1,19 +1,20 @@
-<div id="vmap" style="width: 100%; height: 100%;"></div>
+<div class="single-item">
+  <div class="vmap"></div>
+  <div class="holder"><%= image_tag ("america.png") %></div>
+  <div class="holder"><%= image_tag ("america.png") %></div>
+</div>
 
-<div class="divider_bottom">
-  <p>
-  <span class="first">Citizen</span> With a government elected by its citizens
-  and that effects every aspect of our lives from schools to health care to homeland
-  security, voting is an important right in our society. By voting, you are making
-  your voice heard and registering your opinion on how you think the government
-  should operate.
-  </p>
+<div class="footer">
+  <ul class="inline-list">
+    <li>Copyright KA Prod. 2015</li>
+  </ul>
 </div>
 
   <% content_for :extra_footer do %>
     <script>
       $(function(){
         buildMap();
+        buildSlider();
       });
     </script>
   <% end %>

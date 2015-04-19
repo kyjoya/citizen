@@ -15,4 +15,15 @@
       </div>
     </div>
     <% end %>
+
+    <% @signed_petitions.each do |petition| %>
+      <div class="inline-list">
+        <li><%= petition.name %></li>
+
+        <div class="button">
+          <%= link_to "Delete Signature",
+            petition_membership_path(petition, petition.memberships.find_by(user: current_user)), method: :delete %>
+        </div>
+      </div>
+    <% end %>
 </div>

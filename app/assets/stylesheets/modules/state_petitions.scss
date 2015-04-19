@@ -1,0 +1,13 @@
+@import 'variables';
+
+#petitions_div {
+  border: 1px solid $red;
+  margin-top: 2%;
+  padding: 1em;
+}
+#arrow-up {
+  position: fixed;
+  height: 3em;
+  width: 1em;
+  border: 1px solid red;
+}

@@ -1,40 +1,42 @@
 @import 'variables';
 
-body {
-  background-color: $main;
+.single-item {
+  height: 90%;
+  width: 90%;
+  margin-left: 5em;
+  position: relative;
 }
 
-.row h1 a {
-  color: $navyblue;
-  font-family: $h1-font;
-  font-variant: small-caps;
-  letter-spacing: .1em;
-  text-align: left;
-  margin-left: 40%;
+.slick-prev:before, .slick-next:before {
+    color: $red !important;
 }
 
-#vmap {
+.vmap {
+  padding-top: 5em;
+  height: 90%;
+  width: 100%;
+}
+
+.holder {
   padding: 0;
-  border-top: .1em solid #E74C3C;
-  border-bottom: .1em solid #E74C3C;
+  height: 90%;
+  width: 100%;
+    img {
+      padding-top: 2em;
+      padding-bottom: 2em;
+      height: 90%;
+      width: 100%;
+    }
 }
 
-.divider_bottom p {
-  margin-right: 4em;
-  margin-left: 4em;
-  margin-top: 1em;
-}
-
-.divider_bottom .first {
-  font-family: $h1-font;
-  font-variant: small-caps;
-  font-size: 2em;
-}
-
-.button {
-  background-color: $red;
-    a {
-      color: $main;
+.footer {
+  background-color: $black;
+  height: 5%;
+    li {
+      color: $offwhite;
       font-family: $main-font;
+      font-size: .8em;
+      margin-top: .5em;
+      padding-left: .2em;
     }
 }
