@@ -1,10 +1,10 @@
 function buildSlider() {
   jQuery(document).ready(function() {
     $('.single-item').slick({
-      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3500,
       arrows: true,
-      autoplay: false,
-      autoplaySpeed: 1000,
+      adaptiveHeight:true
     });
   });
 }

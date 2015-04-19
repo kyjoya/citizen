@@ -1,15 +1,15 @@
 @import 'variables';
 
 #state_header {
-  height: 20em;
+  height: 10em;
   border-bottom: 1px solid $red;
   border-top: 1px solid $red;
 }
 
 #state_header h1 {
-  font-family: $h1-font;
   text-align: center;
-  margin-top: 15%;
+  margin-top: 5vh;
+  font-family: $h1-font;
 }
 
 .inline-list li {

@@ -8,7 +8,7 @@ function buildMap() {
         color: '#2C3E50',
         hoverColor: '#E74C3C',
         selectedColor: '#FFFFFF',
-        showTooltips: true;
+        showTooltips: true,
         onRegionLabelShow:  function (el, code, region) {
           tooltip(el, code);
         },
