@@ -7,17 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header class="row" class="title">
-    <h1><a href="/">Citizen</a></h1>
-  </header>
-
   <nav class="top-bar" class="fixed">
     <section class="top-bar-section">
+      <h4 id="logo"><a href="/">Citizen</a></h4>
+
       <ul class="right">
         <%- if current_user.try(:admin?) %>
          <li><%= link_to 'Admin Home', admin_petitions_path %></li>
        <%- end %>
         <%- if current_user -%>
+          <li><%= image_tag current_user.image.url, size: "30x30" %></li>
           <li><%= link_to 'Profile', user_path(current_user) %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
@@ -26,6 +25,7 @@
         <%- end -%>
       </ul>
     </section>
+
 
     <section class="top-bar-section">
       <ul class="left">
@@ -43,9 +43,7 @@
 
     <%= yield %>
 
-
     <%= javascript_include_tag 'application' %>
     <%= yield :extra_footer %>
-
 </body>
 </html>

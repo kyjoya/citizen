@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user can view and update information from a user profile page' do
+feature 'user can view profile page' do
   scenario 'user visits their profile page' do
     visit new_user_session_path
 

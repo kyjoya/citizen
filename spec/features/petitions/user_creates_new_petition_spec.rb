@@ -17,10 +17,13 @@ feature 'user can create a new petition' do
 
     fill_in 'Name', with: "A petition to end all petitions"
     fill_in 'Description', with: "I really hate petitions and want them to be banned."
+    attach_file("petition_image",
+     "#{Rails.root}/spec/fixtures/wellness-south-america-parrots.png")
     click_on 'Submit'
 
     expect(page).to have_content("A petition to end all petitions")
     expect(page).to have_content("I really hate petitions and want them to be banned.")
+    expect(page).to have_css("img[src*='/wellness-south-america-parrots.png']")
     expect(page).to have_content("Added")
   end
 

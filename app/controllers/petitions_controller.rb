@@ -1,9 +1,10 @@
 class PetitionsController < ApplicationController
   def index
     @state = State.find_by(name: params[:state_id])
-    if @state
-      @petitions = @state.petitions.limit(10)#Petition.limit(10).where(state_id: params[:state_id])
-      @petition = Petition.new
+    @petition = Petition.new
+
+    if params[:search]
+      @petitions = Petition.search(params[:search])
     else
       @petitions = Petition.limit(20)
     end
@@ -19,9 +20,9 @@ class PetitionsController < ApplicationController
     @petition.owner_id = current_user.id
 
     if @petition.save
-      redirect_to state_petitions_path(@state), notice: "Added."
+      redirect_to state_path(@state), notice: "Added."
     else
-      redirect_to state_petitions_path(@state), notice: "Not valid. Please provide a name and description."
+      redirect_to state_path(@state), notice: "Not valid. Please provide a name and description."
     end
   end
 
