@@ -11,22 +11,13 @@ feature 'user signs a petition' do
 
   scenario 'users can sign a petition' do
     petition = FactoryGirl.create(:petition)
+    user = FactoryGirl.create(:user)
 
-    visit state_petition_path(id: petition.id, state_id: petition.state_id)
+    visit state_petition_path(state_id: petition.state.name, id: petition.id)
 
     click_on "Sign Petition"
 
     expect(page).to have_content("You've signed this petition!")
+    expect(page).to have_content(user.first_name)
   end
-
-  scenario 'user tries to sign petition twice' do
-    petition = FactoryGirl.create(:petition)
-
-    visit state_petition_path(id: petition.id, state_id: petition.state_id)
-    click_on "Sign Petition"
-
-    expect(page).to_not have_content("Sign Petition")
-  end
-
-  scenario 'user can comment on a petition'
 end

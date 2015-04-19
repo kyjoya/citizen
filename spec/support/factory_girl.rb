@@ -21,4 +21,9 @@ FactoryGirl.define do
     owner_id 1
     state
   end
+
+  factory :membership do
+    user
+    petition
+  end
 end
