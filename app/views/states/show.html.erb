@@ -1,15 +1,15 @@
 
 <div class="small-12 columns" id="state_header">
     <h1><%= @state.name %></h1>
+    <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
 </div>
-
-
-<a href="#petitions_div">state petitions</a>
 
 <div class="small-12 columns" id="state_container">
   <div class="small-4 columns" id="state_info">
     <p>
-      <%= @state_info %>
+      <% @state_info.each do |thing| %>
+        <%= thing %>
+      <% end %>
     </p>
   </div>
 
@@ -23,9 +23,7 @@
       <div class="small-4 small-centered columns">
         <%= form_tag state_path(@state), method: :get do  %>
         <li><%= text_field_tag :search %></li>
-
         <li><%= submit_tag "Search Petitions" %></li>
-
       <% end %>
       </div>
   </div>

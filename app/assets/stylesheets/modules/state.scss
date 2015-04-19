@@ -2,13 +2,15 @@
 
 #state_header {
   height: 10em;
-  border-bottom: 1px solid $red;
-  border-top: 1px solid $red;
+    p {
+      text-align: center;
+    }
 }
 
 #state_header h1 {
   text-align: center;
   margin-top: 5vh;
+  position: relative;
   font-family: $h1-font;
 }
 
