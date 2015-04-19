@@ -1,14 +1,12 @@
-<div class="small-12 columns">
-  <%= form_for [@state, @petition || Petition.new] do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= form_for [@state, @petition || Petition.new] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
 
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
 
-    <%= f.submit "Submit" %>
-  <% end %>
-</div>
+  <%= f.submit "Submit" %>
+<% end %>

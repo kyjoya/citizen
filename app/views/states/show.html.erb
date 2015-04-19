@@ -1,4 +1,3 @@
-
 <div class="small-12 columns" id="state_header">
     <h1><%= @state.name %></h1>
     <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
@@ -43,6 +42,7 @@
           state_petition_path(id: petition, state_id: petition.state) %>
         </h2>
         <%= petition.description  %>
+        <%= image_tag petition.image.url %>
         <%= petition.owner_id %>
       <% end %>
     <% else %>

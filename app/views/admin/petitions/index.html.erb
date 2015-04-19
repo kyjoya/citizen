@@ -1,10 +1,10 @@
-<div class="small-12 columns">
-  <% if @petitions %>
-    <% @petitions.each do |petition| %>
-      <%= petition.name %>
+<% if @petitions %>
+  <% @petitions.each do |petition| %>
+    <div class="inline-list" id="admin_petitions">
+      <li><%= petition.name %></li>
       <div class="button">
-        <%= link_to 'Delete Petition', admin_petition_path(petition), method: :delete %>
+        <li><%= link_to 'Delete Petition', admin_petition_path(petition), method: :delete %></li>
       </div>
-    <% end %>
+    </div>
   <% end %>
-</div>
+<% end %>
