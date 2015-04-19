@@ -7,7 +7,7 @@
 }
 
 #arrow-up {
-  position: fixed;
+  position: relative;
   height: 3em;
   width: 1em;
   border: 1px solid red;
@@ -15,7 +15,6 @@
 
 #all_petitions {
   font-family: $main-font;
-  float: left;
     a {
       color: $red;
     }
@@ -23,4 +22,8 @@
 
 #petition_page li a {
   text-align: center;
+}
+
+#single_petition {
+  border: 1px solid $red;
 }

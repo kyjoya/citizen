@@ -13,7 +13,7 @@
   </div>
 
   <div class="small-8 columns" id="state_chart">
-    something cool
+  
   </div>
 </div>
 
@@ -27,30 +27,23 @@
       </div>
   </div>
 
-
   <div class="small-4 columns" id="new_petition">
-    <% if current_user && @state %>
-      <%= render 'petitions/new' %>
-    <% end %>
+    <%= render 'petitions/new' %>
   </div>
 
   <div class="small-6 columns" id="all_petitions">
-    <% if @petitions %>
-      <% @petitions.each do |petition| %>
-        <h2>
+    <% @petitions.each do |petition| %>
+      <div class="inline-list" id="single_petition">
+        <li><%= image_tag petition.image.url, size: '100x100' %></li>
+        <li>
           <%= link_to petition.name,
           state_petition_path(id: petition, state_id: petition.state) %>
-        </h2>
-        <%= petition.description  %>
-        <%= image_tag petition.image.url %>
-        <%= petition.owner_id %>
-      <% end %>
-    <% else %>
-      "No petitions yet!"
+        </li>
+      </div>
     <% end %>
   </div>
 
-  <div class="small-1 columns" id="arrow-up"></div>
+  <div class="small-2 columns" id="arrow-up"></div>
 
 </div>
 

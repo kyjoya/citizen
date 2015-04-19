@@ -56,14 +56,14 @@ states.each do |name|
 end
 
 if Rails.env.development?
-  15.times do
+  100.times do
     user = User.new(
       username: Faker::Name.name,
       email: Faker::Internet.email,
       password: Faker::Internet.password,
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
-      affiliation: %(Republican Democrat Independent).sample,
+      affiliation: %w(Republican Democrat Independent Undecided).sample,
       sign_in_count: 0
     )
     if user.valid?
@@ -71,24 +71,22 @@ if Rails.env.development?
     end
   end
 
-  60.times do
+  500.times do
     petition = Petition.new(
       name: Faker::Lorem.word,
       description: Faker::Lorem.paragraph(1, false),
       owner_id: rand(2..User.all.count),
       state_id: rand(2..State.all.count),
-      created_at: Faker::Time.between(2.days.ago, Time.now),
-      updated_at: Faker::Time.between(1.days.ago, Time.now)
     )
     if petition.valid?
       petition.save!
     end
   end
 
-  150.times do
+  1000.times do
     signature = Membership.new(
       user_id: rand(2..User.all.count),
-      state_id: rand(2..State.all.count)
+      petition_id: rand(2..Petition.all.count)
     )
     if signature.valid?
       signature.save!

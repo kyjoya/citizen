@@ -36,5 +36,7 @@
 
 #state_chart {
   height: 35em;
-  border: 1px solid $red;
+  padding: 5em;
+  background: image_url("data.jpg");
+  background-size: 50em 35em;
 }
