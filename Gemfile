@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'devise'
 gem 'foundation-rails', '5.5.1.0'
 gem 'pry-rails'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
