@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  belongs_to :petition
   has_many :memberships
   has_many :petitions, through: :memberships
   mount_uploader :image, ProfilePhotoUploader
