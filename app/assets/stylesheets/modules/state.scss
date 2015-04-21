@@ -24,26 +24,32 @@
   text-align: center;
 }
 
-#state_container {
+#state_info {
   width: 100%;
   height: 35em;
   background-color: $navyblue;
 }
 
-#state_info {
+#rep_info {
   height: 35em;
   overflow-y: scroll;
   overflow-x: hidden;
-    p {
-      width: 100%;
-      font-family: $main-font;
-      color: $offwhite;
-    }
+  p {
+    width: 100%;
+    font-family: $main-font;
+    color: $offwhite;
+  }
 }
 
 #state_chart {
+  // display: inline-block;
+  // width: 20px;
+  // height: 75px;
+  // background-color: teal;
+  // margin-right: 2px;
   height: 35em;
   padding: 5em;
+  background-color: $lightblue;
 }
 
 .voter_information {

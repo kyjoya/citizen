@@ -27,7 +27,11 @@ class Petition < ActiveRecord::Base
   end
 
   def self.top_five
-    binding.pry
+    select("petitions.*, count(memberships.id) AS signatures_count").
+    joins(:memberships).
+    group("petitions.id").
+    order("signatures_count DESC").
+    limit(5)
   end
 
   def owner?(owner_id)

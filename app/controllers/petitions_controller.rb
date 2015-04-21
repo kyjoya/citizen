@@ -18,7 +18,7 @@ class PetitionsController < ApplicationController
     @state = State.find_by(name: params[:state_id])
     @petition = @state.petitions.new(petition_params)
     @petition.owner_id = current_user.id
-    
+
     if @petition.save
       redirect_to state_path(@state), notice: "Added."
     else

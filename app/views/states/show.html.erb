@@ -4,19 +4,7 @@
     <p><a href="#_vit"><%= @state.name %> Voter Information</a></p>
 </div>
 
-<div class="small-12 columns" id="state_container">
-  <div class="small-4 columns" id="state_info">
-    <p>
-      <% @state_info.each do |thing| %>
-        <%= thing[1][0] %>
-        <%= thing[1][1] %>
-      <% end %>
-    </p>
-
-    <div class="small-8 columns" id="state_chart"></div>
-
-  </div>
-</div>
+<div class="small-12 columns" id="state_chart">so chart.</div>
 
 <div class="small-12 columns" id="petitions_div">
   <div class="small-4 columns" id="new_petition">
@@ -24,16 +12,27 @@
   </div>
 
   <div class="small-6 small-offset-1 columns" id="all_petitions">
-    <% @petitions.each do |petition| %>
-      <% if petition.trending? %>
+    <% @petitions.top_five.each do |petition| %>
         <%= image_tag petition.image.url, size: '100x100' %>
         <p><%= link_to petition.name,
           state_petition_path(id: petition, state_id: petition.state) %></p>
         <p><%= petition.owner?(petition.owner_id) %></p>
         <p><%= petition.description %></p>
         <p><%= petition.signature_count %></p>
-      <% end %>
     <% end %>
+  </div>
+</div>
+
+
+<div class="small-12 columns" id="state_info">
+<div class="small-7 columns"id="_vit" class="voter_tool"></div>
+  <div class="small-5 columns" id="rep_info">
+    <p>
+      <% @state_info.each do |thing| %>
+        <%= thing[1][0] %>
+        <%= thing[1][1] %>
+      <% end %>
+    </p>
   </div>
 </div>
 
@@ -43,6 +42,8 @@
   <script>
     $(function(){
       scroll();
+      // buildVisualization();
     });
+    vit.load({'region': '<%= @state.name %>', 'official_only': true});
   </script>
 <% end %>
