@@ -1,7 +1,6 @@
 @import 'variables';
 
 #petitions_div {
-  border: 1px solid $red;
   margin-top: 2%;
   padding: 1em;
 }
@@ -26,4 +25,9 @@
 
 #single_petition {
   border: 1px solid $red;
+}
+
+.button {
+  background-color: $red;
+  font-family: $main-font;
 }

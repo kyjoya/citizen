@@ -25,4 +25,16 @@ class Petition < ActiveRecord::Base
       where(state: state).limit(10)
     end
   end
+
+  def self.top_five
+    binding.pry
+  end
+
+  def owner?(owner_id)
+    "#{User.find(owner_id).first_name} #{User.find(owner_id).last_name}"
+  end
+
+  def signature_count
+    memberships.count
+  end
 end

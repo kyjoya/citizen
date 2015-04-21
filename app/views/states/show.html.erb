@@ -1,102 +1,48 @@
 <div class="small-12 columns" id="state_header">
     <h1><%= @state.name %></h1>
     <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
+    <p><a href="#_vit"><%= @state.name %> Voter Information</a></p>
 </div>
 
 <div class="small-12 columns" id="state_container">
   <div class="small-4 columns" id="state_info">
     <p>
       <% @state_info.each do |thing| %>
-        <%= thing %>
+        <%= thing[1][0] %>
+        <%= thing[1][1] %>
       <% end %>
     </p>
-  </div>
 
-  <div class="small-8 columns" id="state_chart">
-  
+    <div class="small-8 columns" id="state_chart"></div>
+
   </div>
 </div>
 
 <div class="small-12 columns" id="petitions_div">
-    <div class="inline-list">
-      <div class="small-4 small-centered columns">
-        <%= form_tag state_path(@state), method: :get do  %>
-        <li><%= text_field_tag :search %></li>
-        <li><%= submit_tag "Search Petitions" %></li>
-      <% end %>
-      </div>
-  </div>
-
   <div class="small-4 columns" id="new_petition">
     <%= render 'petitions/new' %>
   </div>
 
-  <div class="small-6 columns" id="all_petitions">
+  <div class="small-6 small-offset-1 columns" id="all_petitions">
     <% @petitions.each do |petition| %>
-      <div class="inline-list" id="single_petition">
-        <li><%= image_tag petition.image.url, size: '100x100' %></li>
-        <li>
-          <%= link_to petition.name,
-          state_petition_path(id: petition, state_id: petition.state) %>
-        </li>
-      </div>
+      <% if petition.trending? %>
+        <%= image_tag petition.image.url, size: '100x100' %>
+        <p><%= link_to petition.name,
+          state_petition_path(id: petition, state_id: petition.state) %></p>
+        <p><%= petition.owner?(petition.owner_id) %></p>
+        <p><%= petition.description %></p>
+        <p><%= petition.signature_count %></p>
+      <% end %>
     <% end %>
   </div>
-
-  <div class="small-2 columns" id="arrow-up"></div>
-
 </div>
 
-<% content_for :extra_footer do %>
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function(){
-                  $(".contactLink").click(function(){
-                      if ($("#contactForm").is(":hidden")){
-                          $("#contactForm").slideDown("slow");
-                      }
-                      else{
-                          $("#contactForm").slideUp("slow");
-                      }
-                  });
-              });
-              function closeForm(){
-                  $("#messageSent").show("slow");
-                  setTimeout('$("#messageSent").hide();$("#contactForm").slideUp("slow")', 2000);
-             }
 
-  $(document).ready(function() {
-    function filterPath(string) {
-      return string
-        .replace(/^\//,'')
-        .replace(/(index|default).[a-zA-Z]{3,4}$/,'')
-        .replace(/\/$/,'');
-    }
-    $('a[href*=#]').each(function() {
-      if ( filterPath(location.pathname) == filterPath(this.pathname)
-      && location.hostname == this.hostname
-      && this.hash.replace(/#/,'') ) {
-        var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
-        var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
-         if ($target) {
-           var targetOffset = $target.offset().top;
-           $(this).click(function() {
-             $('html, body').animate({scrollTop: targetOffset}, 1000);
-             var d = document.createElement("div");
-          d.style.height = "101%";
-          d.style.overflow = "hidden";
-          document.body.appendChild(d);
-          window.scrollTo(0,scrollToM);
-          setTimeout(function() {
-          d.parentNode.removeChild(d);
-              }, 10);
-             return false;
-           });
-        }
-      }
+<% content_for :extra_footer do %>
+  <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
+  <script>
+    $(function(){
+      scroll();
     });
-  });
-  /*! Smooth Scroll - v1.4.5 - 2012-07-22
-  * Copyright (c) 2012 Karl Swedberg; Licensed MIT, GPL */
-  </script
+  </script>
 <% end %>

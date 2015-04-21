@@ -1,9 +1,14 @@
 @import 'variables';
 
 #state_header {
-  height: 10em;
-    p {
+  height: 15em;
+      p {
       text-align: center;
+      margin: 0;
+      font-family: $main-font;
+        a {
+          color: $red;
+        }
     }
 }
 
@@ -14,7 +19,7 @@
   font-family: $h1-font;
 }
 
-.inline-list li {
+.inline-list li a {
   font-family: $main-font;
   text-align: center;
 }
@@ -22,21 +27,27 @@
 #state_container {
   width: 100%;
   height: 35em;
+  background-color: $navyblue;
 }
 
 #state_info {
   height: 35em;
   overflow-y: scroll;
   overflow-x: hidden;
-  border: 1px solid $navyblue;
     p {
       width: 100%;
+      font-family: $main-font;
+      color: $offwhite;
     }
 }
 
 #state_chart {
   height: 35em;
   padding: 5em;
-  background: image_url("data.jpg");
-  background-size: 50em 35em;
+}
+
+.voter_information {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  width: 25em;
 }
