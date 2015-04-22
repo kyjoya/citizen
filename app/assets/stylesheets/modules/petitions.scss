@@ -1,9 +1,12 @@
 @import 'variables';
 
-#petition_heading h1 {
-  color: $navyblue;
-  font-family: $h1-font;
-  text-align: center;
+#petition_heading {
+  padding-top: 2em;
+  h1 {
+    color: $navyblue;
+    font-family: $h1-font;
+    text-align: center;
+  }
 }
 
 h2 {

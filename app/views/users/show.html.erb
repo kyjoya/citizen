@@ -1,29 +1,35 @@
-<div class="small-12 columns" id="profile">
-  <div class="inline-list">
-    <li><%= @user.email %></li>
-    <li><%= image_tag @user.image.url, size: "60x60" %></li>
-  </div>
-
-  <% @owned_petitions.each do |petition| %>
-    <div class="inline-list">
-      <li><%= petition.name %></li>
-      <div class="button">
-        <%= link_to "Edit Petition", edit_state_petition_path(id: petition, state_id: petition.id) %>
-      </div>
-      <div class="button">
-        <%= link_to "Delete Petition", state_petition_path(id: petition, state_id: petition.id), method: :delete %>
-      </div>
+<div class="profile">
+  <div class="small-12 columns" id="header">
+    <div class="small-4 columns">
+      <%= image_tag @user.image.url, size: "60x60" %>
+      <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
+      <p><%= @user.username %></p>
     </div>
-    <% end %>
 
-    <% @signed_petitions.each do |petition| %>
-      <div class="inline-list">
+  <div class="small-8 columns">
+
+    <% @owned_petitions.each do |petition| %>
+      <div class="inline-list" id="owner_petitions">
         <li><%= petition.name %></li>
-
-        <div class="button">
-          <%= link_to "Delete Signature",
-            petition_membership_path(petition, petition.memberships.find_by(user: current_user)), method: :delete %>
+        <div class="button small radius">
+          <%= link_to "Edit Petition", edit_state_petition_path(id: petition, state_id: petition.id) %>
+        </div>
+        <div class="button small radius">
+          <%= link_to "Delete Petition", state_petition_path(id: petition, state_id: petition.id), method: :delete %>
         </div>
       </div>
-    <% end %>
+      <% end %>
+
+      <% @signed_petitions.each do |petition| %>
+        <div class="inline-list" id="signed_petitions">
+          <li><%= petition.name %></li>
+
+          <div class="button small radius">
+            <%= link_to "Delete Signature",
+              petition_membership_path(petition, petition.memberships.find_by(user: current_user)), method: :delete %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

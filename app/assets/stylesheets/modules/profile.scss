@@ -1,13 +1,40 @@
 @import 'variables';
 
-#profile {
+#header {
   font-family: $h1-font;
+  margin-top: 2em;
     p {
       font-size: 2em;
     }
 }
 
-#profile .button {
+#header img {
+  border-radius: 35px;
+}
+
+#owner_petitions {
+  padding-top: 2em;
+  .button:hover {
+    background: $navyblue;
+  }
+}
+
+#owner_petitions .button {
   float: right;
   margin: .2em;
+    a {
+      color: $offwhite;
+    }
+}
+
+#signed_petitions .button {
+  float: right;
+  margin: .2em;
+    a {
+      color: $offwhite;
+    }
+}
+
+#signed_petitions .button:hover {
+  background: $navyblue;
 }

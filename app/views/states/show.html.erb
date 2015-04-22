@@ -1,7 +1,7 @@
 <div class="small-12 columns" id="state_header">
     <h1><%= @state.name %></h1>
     <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
-    <p><a href="#_vit"><%= @state.name %> Voter Information</a></p>
+    <p><a href="#rep_info"><%= @state.name %> Voter Information</a></p>
 </div>
 
 <div class="small-12 columns" id="state_chart">so chart.</div>
@@ -35,7 +35,6 @@
     </p>
   </div>
 </div>
-
 
 <% content_for :extra_footer do %>
   <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>

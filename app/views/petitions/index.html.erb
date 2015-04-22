@@ -1,35 +1,28 @@
 <div class="small-12 columns" id="petition_heading">
-  <% if @state %>
-    <h1><%= @state.name %> Petitions</h1>
-  <% else %>
-    <h1><%= link_to "All Petitions", petitions_path %></h1>
-  <% end %>
 
-<div class="small-4 small-centered columns">
-  <%= form_tag petitions_path, method: :get do  %>
-    <%= text_field_tag :search %>
-    <%= submit_tag "Search Petitions" %>
-  <% end %>
-</div>
+  <h1>All Petitions</h1>
 
-  <div class="small-4 columns" id="new_petition">
-    <% if current_user && @state %>
-      <%= render 'petitions/new' %>
-    <% end %>
+  <div class="small-8 small-centered columns">
+    <div class="row collapse">
+      <%= form_tag petitions_path, method: :get do  %>
+        <div class="small-9 columns">
+          <%= text_field_tag :search %>
+        </div>
+        <div class="small-3 columns">
+          <%= submit_tag "Search Petitions", class: "small button radius" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="small-8 columns" id="all_petitions">
-    <% if @petitions %>
-      <% @petitions.each do |petition| %>
-        <h2>
-          <%= link_to petition.name,
-          state_petition_path(id: petition, state_id: petition.state) %>
-        </h2>
-        <%= petition.description  %>
-        <%= petition.owner_id %>
-      <% end %>
-    <% else %>
-      "No petitions yet!"
+  <div class="small-8 small-centered columns" id="all_petitions">
+    <% @petitions.each do |petition| %>
+      <h2>
+        <%= link_to petition.name,
+        state_petition_path(id: petition, state_id: petition.state) %>
+      </h2>
+      <%= petition.description  %>
+      <%= petition.owner_id %>
     <% end %>
   </div>
 </div>
