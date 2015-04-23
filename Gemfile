@@ -15,6 +15,11 @@ gem 'pry-rails'
 gem 'faker'
 gem 'httparty'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'rails_serve_static_assets'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
