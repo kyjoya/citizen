@@ -43,7 +43,7 @@ function buildVisualization() {
   var keyWords = ["economy", "women", "poverty", "civil rights", "business", "jobs", "health", "energy", "climate change", "workers"]
   for (var i = 0; i < keyWords.length; i++) {
 
-    var query_params = { apikey: <%= ENV["SUNLIGHT_KEY"] %>,
+    var query_params = { apikey: '19584ee72a4e48f584e5115096739392',
                         phrase: keyWords[i],
                         sort: 'count desc',
                         state: stateConverter(window.location.pathname) };
