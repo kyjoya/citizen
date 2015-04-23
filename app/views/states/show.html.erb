@@ -4,33 +4,67 @@
     <p><a href="#rep_info"><%= @state.name %> Voter Information</a></p>
 </div>
 
-<div class="small-12 columns" id="state_chart">so chart.</div>
+<div class="small-12 columns" id="state_chart">
+
+
+</div>
+
+<div class="small-12 columns">
+  <input type="text_field" name="add_to_chart" value="Add Word To Chart">
+  <input type="button" name="name" value="Add">
+</div>
 
 <div class="small-12 columns" id="petitions_div">
-  <div class="small-4 columns" id="new_petition">
+  <div class="small-12 columns" id="new_petition">
     <%= render 'petitions/new' %>
   </div>
 
-  <div class="small-6 small-offset-1 columns" id="all_petitions">
-    <% @petitions.top_five.each do |petition| %>
+  <div class="row">
+    <div class="large-12 columns" id="all_petitions">
+      <div class="row">
+        <% @petitions.top_five.each do |petition| %>
+          <div class="large-3 small-6 columns">
+            <div class="panel">
+              <%= image_tag petition.image.url, size: '100x100' %>
+              <h4><%= link_to petition.name,
+              state_petition_path(id: petition, state_id: petition.state) %></h4>
+              <p><%= petition.owner?(petition.owner_id) %></p>
+              <p><%= petition.signature_count %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="small-6 small-centered columns" id="all_petitions">
+    <% @petitions.each do |petition| %>
+    <div class="panel">
         <%= image_tag petition.image.url, size: '100x100' %>
         <p><%= link_to petition.name,
           state_petition_path(id: petition, state_id: petition.state) %></p>
         <p><%= petition.owner?(petition.owner_id) %></p>
         <p><%= petition.description %></p>
         <p><%= petition.signature_count %></p>
+    </div>
     <% end %>
   </div>
 </div>
-
 
 <div class="small-12 columns" id="state_info">
 <div class="small-7 columns"id="_vit" class="voter_tool"></div>
   <div class="small-5 columns" id="rep_info">
     <p>
-      <% @state_info.each do |thing| %>
-        <%= thing[1][0] %>
-        <%= thing[1][1] %>
+      <% @state_info["officials"].each do |thing| %>
+        <%= thing["name"] %>
+        <%= thing["address"][0]["line1"] %>
+        <%= thing["address"][0]["line2"] %>
+        <%= thing["address"][0]["city"] %>
+        <%= thing["address"][0]["state"] %>
+        <%= thing["address"][0]["zip"] %>
+        <%= thing["party"] %>
+        <%= thing["name"] %>
+        <%= thing["phones"] %>
       <% end %>
     </p>
   </div>
@@ -39,10 +73,10 @@
 <% content_for :extra_footer do %>
   <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
   <script>
-    $(function(){
-      scroll();
-      // buildVisualization();
+    $(function() {
+      // scroll();
+      buildVisualization();
     });
-    vit.load({'region': '<%= @state.name %>', 'official_only': true});
+    // vit.load({'region': '<%= @state.name %>'});
   </script>
 <% end %>

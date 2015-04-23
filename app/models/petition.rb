@@ -31,7 +31,7 @@ class Petition < ActiveRecord::Base
     joins(:memberships).
     group("petitions.id").
     order("signatures_count DESC").
-    limit(5)
+    limit(4)
   end
 
   def owner?(owner_id)
