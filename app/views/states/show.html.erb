@@ -1,5 +1,5 @@
 <div class="small-12 columns" id="state_header">
-    <h1><%= @state.name %></h1>
+    <h1><%= @state..try(:name) %></h1>
     <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
     <p><a href="#rep_info"><%= @state.name %> Voter Information</a></p>
 </div>

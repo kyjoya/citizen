@@ -48,7 +48,7 @@ function buildVisualization() {
                         sort: 'count desc',
                         state: stateConverter(window.location.pathname) };
 
-    var endpoint = 'http://capitolwords.org/api/phrases/state.json';
+    var endpoint = 'https://capitolwords.org/api/phrases/state.json';
 
     var options = {
       data: query_params,
