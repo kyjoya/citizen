@@ -48,7 +48,7 @@ function buildVisualization() {
                         sort: 'count desc',
                         state: stateConverter(window.location.pathname) };
 
-    var endpoint = '//capitolwords.org/api/phrases/state.json';
+    var endpoint = 'http://capitolwords.org/api/phrases/state.json';
 
     var options = {
       data: query_params,
@@ -61,7 +61,7 @@ function buildVisualization() {
       results.push(count);
         if (results.length == 10) {
 
-          var diameter = 1000,
+          var diameter = 2000,
           format = d3.format(",d"),
           color = d3.scale.category20c();
 
@@ -81,12 +81,13 @@ function buildVisualization() {
                .append("circle");
 
           node.attr("cx", function(d, i) {
-                return (i * 25) + 400;
+                return (i * 175) + 100;
               })
              .attr("cy", diameter/2)
              .attr("r", function(d) {
                   return d / 250;
-             });
+             })
+             .attr("fill", "yellow");
         };
     });
   }
