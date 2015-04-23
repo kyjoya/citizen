@@ -20,22 +20,20 @@ function stateConverter(pathName) {
         {'name':'West Virginia', 'abbrev':'WV'},    {'name':'Wisconsin', 'abbrev':'WI'},        {'name':'Wyoming', 'abbrev':'WY'}
       );
 
+    var returnthis = false;
+
     $.each(states, function(index, value) {
           if (value.name == state) {
-            return value.abbrev
+            returnthis = value.abbrev
           }
         });
+      return returnthis;
 }
-  // if state == "Pennsylvania"
-  // return PA
-
-  // use state full name to return back the abbreviated
-  // version
-
 
 function pathNameConverter(pathName) {
   return pathName.split('/')[2]
 }
+
 
 
 function buildVisualization() {
@@ -45,7 +43,6 @@ function buildVisualization() {
 
     var query_params = { apikey: '19584ee72a4e48f584e5115096739392',
                         phrase: keyWords[i],
-                        sort: 'count desc',
                         state: stateConverter(window.location.pathname) };
 
     var endpoint = '//capitolwords.org/api/phrases/state.json';
@@ -56,12 +53,16 @@ function buildVisualization() {
       dataType: 'jsonp'
     };
 
+
     $.ajax(endpoint, options, results).success(function(data) {
       var count = data.results[0]["count"];
-      results.push(count);
-        if (results.length == 10) {
+      var dataset = {"word": keyWords[i], "count": count};
+      results.push(dataset);
+      });
+  } // ends for loop
 
-          var diameter = 1000,
+
+          var diameter = 2000,
           format = d3.format(",d"),
           color = d3.scale.category20c();
 
@@ -74,20 +75,22 @@ function buildVisualization() {
               .attr("width", diameter)
               .attr("height", diameter)
               .attr("class", "bubble");
-
+debugger;
           var node = svg.selectAll("circle")
                .data(results)
                .enter()
                .append("circle");
 
           node.attr("cx", function(d, i) {
-                return (i * 25) + 400;
+                return (i * 250) + 5;
               })
              .attr("cy", diameter/2)
              .attr("r", function(d) {
-                  return d / 250;
+                  return d["count"] / 250;
              });
-        };
-    });
-  }
-}
+
+          node.append("text")
+             .text(function(d) { return d["word"]; })
+             .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
+             .attr("dy", ".35em");
+} // ends function
