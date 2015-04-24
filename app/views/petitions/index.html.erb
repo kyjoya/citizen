@@ -2,8 +2,10 @@
 
   <h1>All Petitions</h1>
 
-  <div class="small-8 small-centered columns">
+  <div class="small-8 small-centered columns" id="petitions_index">
     <div class="row collapse">
+      <div class ="inline-list">
+
       <%= form_tag petitions_path, method: :get do  %>
         <div class="small-9 columns">
           <%= text_field_tag :search %>
@@ -11,18 +13,29 @@
         <div class="small-3 columns">
           <%= submit_tag "Search Petitions", class: "small button radius" %>
         </div>
+      </div>
       <% end %>
     </div>
   </div>
 
-  <div class="small-8 small-centered columns" id="all_petitions">
+  <div class="small-10 small-centered columns" id="all_petitions">
     <% @petitions.each do |petition| %>
-      <h2>
-        <%= link_to petition.name,
-        state_petition_path(id: petition, state_id: petition.state) %>
-      </h2>
-      <%= petition.description  %>
-      <%= petition.owner_id %>
+    <div class="panel" id="petitions">
+        <%= image_tag petition.image.url, size: '150x150' %>
+        <h4><%= link_to petition.name,
+          state_petition_path(id: petition, state_id: petition.state) %></h4>
+        <p><%= petition.description %></p>
+        <hr>
+        <p>Created by: <%= petition.owner?(petition.owner_id) %></p>
+        <p>Signatures: <%= petition.signature_count %></p>
+        <div class="button small radius">
+          <%= link_to 'Sign Petition', petition_memberships_path(petition_id: petition.id,
+                user: current_user.id, id: petition.state), method: :post %>
+        </div>
+    </div>
     <% end %>
+    <div id="paginator">
+      <%= paginate @petitions, remote: true %>
+    </div>
   </div>
 </div>

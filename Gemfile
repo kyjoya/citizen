@@ -14,6 +14,7 @@ gem 'foundation-rails', '5.5.1.0'
 gem 'pry-rails'
 gem 'faker'
 gem 'httparty'
+gem 'kaminari'
 
 group :production do
   gem 'rails_12factor'

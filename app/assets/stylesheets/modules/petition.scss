@@ -27,7 +27,21 @@
   border: 1px solid $red;
 }
 
-.button {
+#all_petitions .button {
   background-color: $red;
   font-family: $main-font;
+  padding: .05em;
+  margin-top: .1em;
+    a {
+      color: $offwhite;
+    }
+}
+
+#petitions_index .button {
+  background-color: $red;
+  font-family: $main-font;
+  margin: 0;
+    a {
+      color: $offwhite;
+    }
 }

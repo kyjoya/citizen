@@ -6,7 +6,12 @@ class PetitionsController < ApplicationController
     if params[:search]
       @petitions = Petition.search(params[:search])
     else
-      @petitions = Petition.limit(20) || "No petitions yet!"
+      @petitions = Petition.page(params[:page]).
+      per(3)
+    respond_to do |format|
+      format.js
+      format.html
+    end
     end
   end
 

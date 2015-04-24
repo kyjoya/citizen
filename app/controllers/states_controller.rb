@@ -8,6 +8,12 @@ class StatesController < ApplicationController
     word_data = SunlightAPI.new
     @sunlight_info = word_data.sunlight_api_call("economy")
 
-    @petitions = Petition.state_search(params[:search], @state).limit(3) || "No petitions yet!"
+    @petitions = Petition.state_search(params[:search], @state).
+      page(params[:page]).
+      per(3)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 end

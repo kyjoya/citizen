@@ -15,14 +15,13 @@
   text-align: center;
 }
 #petitions {
-    background: $red;
     padding: 1em;
 }
 
 #popular_petitions {
   h1 {
     font-family: $h1-font;
-    color: $offwhite;
+    color: $navyblue;
     text-align: center;
   }
     p {
@@ -66,8 +65,8 @@
 }
 
 .page_break {
-  color: $offwhite;
-  background-color: $offwhite;
+  color: $red;
+  background-color: $red;
   height: 5px;
   margin: 0;
 }
