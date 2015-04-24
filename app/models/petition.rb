@@ -26,7 +26,7 @@ class Petition < ActiveRecord::Base
     end
   end
 
-  def self.top_five
+  def self.top_petitions
     select("petitions.*, count(memberships.id) AS signatures_count").
     joins(:memberships).
     group("petitions.id").

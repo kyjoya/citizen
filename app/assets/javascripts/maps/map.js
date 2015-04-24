@@ -5,8 +5,8 @@ function buildMap() {
         map: 'usa_en',
         backgroundColor: '#FFFFFF',
         borderColor: '#ECF0F1',
-        color: '#2C3E50',
-        hoverColor: '#E74C3C',
+        color: '#3C2200',
+        hoverColor: '#2C3E50',
         selectedColor: '#FFFFFF',
         enableZoom: false,
         onRegionClick: function (event, code, region) {

@@ -8,7 +8,9 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    @membership = Membership.find(params[:id])
+    @membership.destroy
+    redirect_to user_path
   end
 
 end

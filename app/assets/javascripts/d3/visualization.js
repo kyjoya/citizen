@@ -58,39 +58,43 @@ function buildVisualization() {
       var count = data.results[0]["count"];
       var dataset = {"word": keyWords[i], "count": count};
       results.push(dataset);
-      });
-  } // ends for loop
-
-
-          var diameter = 2000,
+        if (results.length == 10) {
+          var h = 500;
+          var w = 1500;
           format = d3.format(",d"),
           color = d3.scale.category20c();
 
             var bubble = d3.layout.pack()
               .sort(null)
-              .size([diameter, diameter])
+              .size([w, h])
               .padding(1.5);
 
           var svg = d3.select("#state_chart").append("svg")
-              .attr("width", diameter)
-              .attr("height", diameter)
+              .attr("width", w)
+              .attr("height", h)
               .attr("class", "bubble");
-debugger;
+
           var node = svg.selectAll("circle")
                .data(results)
                .enter()
                .append("circle");
 
           node.attr("cx", function(d, i) {
-                return (i * 250) + 5;
+                return (i * 125) + 35;
               })
-             .attr("cy", diameter/2)
+             .attr("cy", w/5)
              .attr("r", function(d) {
-                  return d["count"] / 250;
-             });
+                  return d["count"] / 125;
+             })
+             .attr("fill", "#3498DB");
+           }
+      });
+  } // ends for loop
 
-          node.append("text")
-             .text(function(d) { return d["word"]; })
-             .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
-             .attr("dy", ".35em");
+
+
+          // node.append("text")
+          //    .text(function(d) { return d["word"]; })
+          //    .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px"; })
+          //    .attr("dy", ".35em");
 } // ends function

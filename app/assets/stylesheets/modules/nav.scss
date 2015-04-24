@@ -22,13 +22,8 @@
   background: $offwhite;
 }
 
-.top-bar .right li img {
-  // border-radius: 35px;
-  background: $offwhite;
-}
-
 #logo a {
-  margin-left: 47%;
+  margin-left: 45%;
   margin-right: 50%;
   font-family: $h1-font;
   font-weight: bold;
@@ -37,4 +32,15 @@
   color: $navyblue;
   position: absolute;
   margin-top: .2em;
+}
+
+#side_logo a {
+  font-family: $h1-font;
+  font-weight: bold;
+
+}
+
+#side_logo {
+  background: $offwhite;
+  height: 3.5em;  
 }

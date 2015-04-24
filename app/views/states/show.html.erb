@@ -1,35 +1,30 @@
-<div class="small-12 columns" id="state_header">
-    <h1><%= @state.name %></h1>
-    <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
-    <p><a href="#rep_info"><%= @state.name %> Voter Information</a></p>
-</div>
-
 <div id="state_chart">
-
-
+  <div class="small-2 small-centered columns">
+    <input type="text_field" name="add_to_chart" value="Add Word To Chart">
+    <input type="button" name="name" value="Add">
+  </div>
 </div>
 
-<div class="small-12 columns">
-  <input type="text_field" name="add_to_chart" value="Add Word To Chart">
-  <input type="button" name="name" value="Add">
-</div>
-
-<div class="small-12 columns" id="petitions_div">
+<!-- <div class="small-12 columns" id="petitions_div">
   <div class="small-12 columns" id="new_petition">
     <%= render 'petitions/new' %>
-  </div>
+  </div> -->
+<div id="petitions">
 
   <div class="row">
-    <div class="large-12 columns" id="all_petitions">
+    <div class="large-12 columns" id="popular_petitions">
       <div class="row">
-        <% @petitions.top_five.each do |petition| %>
+        <h1>Most Popular Petitions in <%= @state.name %></h1>
+        <% @petitions.top_petitions.each do |petition| %>
           <div class="large-3 small-6 columns">
             <div class="panel">
-              <%= image_tag petition.image.url, size: '100x100' %>
+              <%= image_tag petition.image.url, size: '150x150' %>
               <h4><%= link_to petition.name,
               state_petition_path(id: petition, state_id: petition.state) %></h4>
+              <hr>
+              <p>Created by:</p>
               <p><%= petition.owner?(petition.owner_id) %></p>
-              <p><%= petition.signature_count %></p>
+              <p>Signatures: <%= petition.signature_count %></p>
             </div>
           </div>
         <% end %>
@@ -37,47 +32,50 @@
     </div>
   </div>
 
-  <div class="small-6 small-centered columns" id="all_petitions">
+  <div class="small-10 small-centered columns" id="all_petitions">
     <% @petitions.each do |petition| %>
     <div class="panel">
-        <%= image_tag petition.image.url, size: '100x100' %>
-        <p><%= link_to petition.name,
-          state_petition_path(id: petition, state_id: petition.state) %></p>
-        <p><%= petition.owner?(petition.owner_id) %></p>
+        <%= image_tag petition.image.url, size: '150x150' %>
+        <h4><%= link_to petition.name,
+          state_petition_path(id: petition, state_id: petition.state) %></h4>
         <p><%= petition.description %></p>
-        <p><%= petition.signature_count %></p>
+        <hr>
+        <p>Created by: <%= petition.owner?(petition.owner_id) %></p>
+        <p>Signatures: <%= petition.signature_count %></p>
     </div>
     <% end %>
   </div>
 </div>
-
+</div>
+<hr class="page_break">
 <div class="small-12 columns" id="state_info">
-<div class="small-7 columns"id="_vit" class="voter_tool"></div>
-  <div class="small-5 columns" id="rep_info">
-    <p>
+<div class="small-6 columns" id="_vit"></div>
+  <div class="small-6 columns" id="rep_info">
+    <ul id="civic_info">
+      <h2><%= @state.name %> Representatives</h2>
+      <hr>
       <% @state_info["officials"].each do |thing| %>
-        <%= thing["name"] %>
-        <%= thing["address"][0]["line1"] %>
-        <%= thing["address"][0]["line2"] %>
-        <%= thing["address"][0]["city"] %>
-        <%= thing["address"][0]["state"] %>
-        <%= thing["address"][0]["zip"] %>
-        <%= thing["party"] %>
-        <%= thing["name"] %>
-        <%= thing["phones"] %>
+        <li><%= thing["name"] %></li>
+        <li><%= thing["address"][0]["line1"] %></li>
+        <li><%= thing["address"][0]["line2"] %></li>
+        <li><%= thing["address"][0]["city"] %></li>
+        <li><%= thing["address"][0]["state"] %></li>
+        <li><%= thing["address"][0]["zip"] %></li>
+        <li><%= thing["party"] %></li>
+        <li><%= thing["phones"].join %></li>
+        <hr>
       <% end %>
-    </p>
+    </ul>
   </div>
 </div>
 
 <% content_for :extra_footer do %>
-  <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
+<script type="text/javascript" src="https://s3.amazonaws.com/vip-voter-information-tool/app.js"></script>
   <script>
     $(function() {
-      // scroll();
-      window.stateData = []
+      scroll();
       buildVisualization();
     });
-    // vit.load({'region': '<%= @state.name %>'});
+    vit.load({officialOnly:false});
   </script>
 <% end %>

@@ -1,31 +1,75 @@
 @import 'variables';
 
 #state_header {
-  height: 15em;
-      p {
-      text-align: center;
-      margin: 0;
-      font-family: $main-font;
-        a {
-          color: $red;
-        }
-    }
+  height: 5em;
 }
 
-#state_header h1 {
-  text-align: center;
-  margin-top: 5vh;
-  position: relative;
-  font-family: $h1-font;
-}
-
-#state_chart .bubble circle {
-  background-color: teal;
+#state_chart {
+  padding: 2em;
+  width: 100%;
+  margin: 0;
 }
 
 .inline-list li a {
   font-family: $main-font;
   text-align: center;
+}
+#petitions {
+    background: $red;
+    padding: 1em;
+}
+
+#popular_petitions {
+  h1 {
+    font-family: $h1-font;
+    color: $offwhite;
+    text-align: center;
+  }
+    p {
+      font-family: $main-font;
+      color: $navyblue;
+      margin: 0;
+    }
+}
+
+#popular_petitions h4 {
+  a {
+    font-family: $h1-font;
+    color: $red;
+    padding: 0;
+  }
+}
+
+#popular_petitions img {
+  padding: 1em;
+}
+
+#all_petitions img {
+  float: left;
+  height: 100%;
+  padding: 1em;
+  position: relative;
+}
+
+#all_petitions h4 {
+  a {
+    font-family: $h1-font;
+    color: $red;
+    padding: 0;
+  }
+}
+
+#all_petitions p {
+  font-family: $main-font;
+  color: $navyblue;
+  margin: 0;
+}
+
+.page_break {
+  color: $offwhite;
+  background-color: $offwhite;
+  height: 5px;
+  margin: 0;
 }
 
 #state_info {
@@ -36,18 +80,23 @@
 }
 
 #rep_info {
+  margin-top: .5em;
   height: 35em;
   overflow-y: scroll;
   overflow-x: hidden;
-  p {
+  ul {
     width: 100%;
     font-family: $main-font;
     color: $offwhite;
+    list-style-type: none;
   }
 }
 
-.voter_information {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  width: 25em;
+#rep_info h2 {
+  font-family: $h1-font;
+  color: $offwhite;
+}
+
+div#_vit {
+  margin-top: 2.5em;
 }

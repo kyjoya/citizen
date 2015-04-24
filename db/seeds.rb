@@ -73,8 +73,8 @@ if Rails.env.development?
 
   500.times do
     petition = Petition.new(
-      name: Faker::Lorem.word,
-      description: Faker::Lorem.paragraph(1, false),
+      name: "Petition",
+      description: Faker::Lorem.paragraph(2, false),
       owner_id: rand(2..User.all.count),
       state_id: rand(2..State.all.count),
     )
@@ -83,7 +83,7 @@ if Rails.env.development?
     end
   end
 
-  1000.times do
+  5000.times do
     signature = Membership.new(
       user_id: rand(2..User.all.count),
       petition_id: rand(2..Petition.all.count)
