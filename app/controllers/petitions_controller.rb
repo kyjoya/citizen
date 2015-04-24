@@ -33,6 +33,7 @@ class PetitionsController < ApplicationController
 
   def show
     @petition = Petition.find(params[:id])
+    @state = State.find_by(name: params[:state_id])
   end
 
   def edit

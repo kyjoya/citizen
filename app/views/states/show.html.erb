@@ -63,10 +63,12 @@
         <hr>
         <p>Created by: <%= petition.owner?(petition.owner_id) %></p>
         <p>Signatures: <%= petition.signature_count %></p>
-        <div class="button small radius">
-          <%= link_to 'Sign Petition', petition_memberships_path(petition_id: petition.id,
-                user: current_user.id, id: petition.state), method: :post %>
-        </div>
+        <%  if current_user %>
+          <div class="button small radius">
+              <%= link_to 'Sign Petition', petition_memberships_path(petition_id: petition.id,
+                  user: current_user.id, id: petition.state), method: :post %>
+          </div>
+        <% end %>
     </div>
     <% end %>
     <div id="paginator">
@@ -98,13 +100,13 @@
 </div>
 
 <% content_for :extra_footer do %>
-<script type="text/javascript" src="https://s3.amazonaws.com/vip-voter-information-tool/app.js"></script>
+<script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
   <script>
     $(function() {
       newForm();
       scroll();
-      // buildVisualization();
+      buildVisualization();
     });
-    vit.load({officialOnly:false});
+    // vit.load({'region': '<%= @state.name %>'});
   </script>
 <% end %>

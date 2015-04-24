@@ -1,3 +1,5 @@
+require 'httparty'
+
 states = [
   "Alabama",
   "Alaska",
@@ -50,10 +52,77 @@ states = [
   "Wisconsin",
   "Wyoming",
 ]
+state_converter = {
+  "AL" => 'Alabama',
+  'AK' => "Alaska",
+  "AZ" => 'Arizona',
+  'AR' => "Arkansas",
+  "CA" => 'California',
+  'CO' => "Colorado",
+  "CT" => 'Connecticut',
+  'DE' => "Delaware",
+  "FL" => 'Florida',
+  'GA' => "Georgia",
+  "HI" => 'Hawaii',
+  'ID' => "Idaho",
+  "IL" => 'Illinois',
+  'IN' => "Indiana",
+  "IA" => 'Iowa',
+  'KS' => "Kansas",
+  "KY" => 'Kentucky',
+  'LA' => "Louisiana",
+  "ME" => 'Maine',
+  'MD' => "Maryland",
+  "MA" => 'Massachusetts',
+  'MI' => "Michigan",
+  "MN" => 'Minnesota',
+  'NE' => "Nebraska",
+  "NV" => 'Nevada',
+  'NM' => "New Hampshire",
+  "NJ" => 'New Jersey',
+  'NM' => "New Mexico",
+  "NY" => 'New York',
+  'NC' => "North Carolina",
+  "ND" => 'North Dakota',
+  'OH' => "Ohio",
+  "OK" => 'Oklahoma',
+  'OR' => "Oregon",
+  "PA" => 'Pennsylvania',
+  'RI' => "Rhode Island",
+  "SC" => 'South Carolina',
+  'SD' => "South Dakota",
+  "TN" => 'Tennessee',
+  'TX' => "Texas",
+  "UT" => 'Utah',
+  'VT' => "Vermont",
+  "VA" => 'Virginia',
+  'WA' => "Washington",
+  'WV' => "West Virginia",
+  'WI' => "Wisconsin",
+  'WY' => "Wyoming"
+}
+
+
+words = ["economy", "women", "poverty", "business", "jobs", "health", "energy", "workers"]
 
 states.each do |name|
-  State.create(name: name)
+  State.find_or_create_by(name: name)
 end
+
+# states.each do |state|
+# abbreviation = state_converter[state]
+
+words.each do |word|
+  url = "http://www.capitolwords.org/api/1/phrases/state.json?phrase=#{word}&page=0&per_page=50&sort=count&apikey=#{ENV["SUNLIGHT_KEY"]}"
+  results = HTTParty.get(url)["results"]
+
+  results.each do |hash|
+    state = State.find_by(name: state_converter[hash["state"]])
+    StateWordCount.find_or_create_by(state_id: state.id, count: hash["count"], word: word) if state
+  end
+end
+
+
 
 if Rails.env.development?
   100.times do

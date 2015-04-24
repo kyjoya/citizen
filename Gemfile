@@ -15,6 +15,7 @@ gem 'pry-rails'
 gem 'faker'
 gem 'httparty'
 gem 'kaminari'
+gem "active_model_serializers", "0.8.3"
 
 group :production do
   gem 'rails_12factor'

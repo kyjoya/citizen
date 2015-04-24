@@ -78,6 +78,10 @@
   overflow: hidden;
 }
 
+#voter_tool {
+  width: 10em;
+}
+
 #rep_info {
   margin-top: .5em;
   height: 35em;
@@ -98,4 +102,6 @@
 
 div#_vit {
   margin-top: 2.5em;
+  margin-bottom: 1em;
+  float: left;
 }

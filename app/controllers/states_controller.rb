@@ -11,8 +11,9 @@ class StatesController < ApplicationController
     @petitions = Petition.state_search(params[:search], @state).
       page(params[:page]).
       per(3)
+
     respond_to do |format|
-      format.js
+      format.json { render json: @state.state_word_counts, each_serializer: StateWordCountSerializer }
       format.html
     end
   end
