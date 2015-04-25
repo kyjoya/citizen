@@ -35,67 +35,92 @@
 // }
 
 
+function processData(data) {
+      var data = data.states;
+      var newDataSet = [];
+
+      for(var i in data) {
+
+        newDataSet.push({
+          name: data[i]["word"], className: data[i]["word"], size: data[i]["count"]
+        });
+      }
+
+        return {children: newDataSet};
+
+    }
+
 
 function buildVisualization() {
   $.getJSON(window.location.pathname + '.json', function(data) {
-          var data = data.states;
-          var newDataSet = [];
+          var diameter = 600;
 
-          for(var i in data) {
-
-            newDataSet.push({
-              name: data[i]["word_count_information"], className: data[i]["word_count_information"], size: data[i]
-            });
-            debugger;
-            return {children: newDataSet}
-          }
+          var svg = d3.select('#state_chart').append('svg')
+           .attr('width', diameter)
+           .attr('height', diameter);
 
 
+          var bubble = d3.layout.pack()
+           .size([diameter, diameter])
+           .padding(3)
+           .value(function(d) {return d.size});
 
+          // var stuff = processData(data);
 
-          var diameter = 960
-          format = d3.format(",d"),
-          color = d3.scale.category20c();
+          var nodes = bubble.nodes(processData(data))
+            .filter(function(d) { return !d.children; });
 
-            var bubble = d3.layout.pack()
-              .size([d, d])
-              .padding(1.5);
+            var vis = svg.selectAll('circle')
+                      .data(nodes, function(d) { return d.name; });
 
-          var svg = d3.select("#state_chart").append("svg")
-              .attr("width", w)
-              .attr("height", h)
-              .attr("class", "bubble");
-
-          var node = svg.selectAll("circle")
-               .data(data)
-               .enter()
-               .append("circle")
-               .attr("cx", function(d, i) {
-                return (i * 125) + 35;
-              })
-             .attr("cy", w/5)
-             .attr("r", function(d) {
-                  return d["count"] / 125;
-             })
-            .transition()
-            .duration(2000);
-
-          var labels = svg.selectAll("text")
-             .data(data)
-             .enter()
-             .append("text")
-             .text(function(d) {
-                  return d["word"];
-             })
-             .attr("cx", function(d, i) {
-                return (i * 125) + 35;
-              })
-             .attr("cy", w/5)
+           vis.enter().append('circle')
+             .attr('transform', function(d) { return 'translate('
+                + d.x + ',' + d.y + ')'; })
+             .attr('r', function(d) { return d.r; })
+             .attr('class', function(d) { return d.className; });
+  });
+} // ends function
+          // var diameter = 960
+          // format = d3.format(",d"),
+          // color = d3.scale.category20c();
+          //
+          //   var bubble = d3.layout.pack()
+          //     .size([d, d])
+          //     .padding(1.5);
+          //
+          // var svg = d3.select("#state_chart").append("svg")
+          //     .attr("width", w)
+          //     .attr("height", h)
+          //     .attr("class", "bubble");
+          //
+          // var node = svg.selectAll("circle")
+          //      .data(data)
+          //      .enter()
+          //      .append("circle")
+          //      .attr("cx", function(d, i) {
+          //       return (i * 125) + 35;
+          //     })
+          //    .attr("cy", w/5)
+          //    .attr("r", function(d) {
+          //         return d["count"] / 125;
+          //    })
+          //   .transition()
+          //   .duration(2000);
+          //
+          // var labels = svg.selectAll("text")
+          //    .data(data)
+          //    .enter()
+          //    .append("text")
+          //    .text(function(d) {
+          //         return d["word"];
+          //    })
+          //    .attr("cx", function(d, i) {
+          //       return (i * 125) + 35;
+          //     })
+          //    .attr("cy", w/5)
 
           // node.append("text")
           //    .attr("font-size", "24px")
           //    .attr("font-family", "sans-serif")
           //    .attr("fill", "black")
           //    .text(function(d) { return d["word"]; });
-  });
-} // ends function

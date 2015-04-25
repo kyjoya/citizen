@@ -5,9 +5,6 @@ class StatesController < ApplicationController
     state_representatives = CivicAPI.new
     @state_info = state_representatives.civic_api_call(params[:id])
 
-    word_data = SunlightAPI.new
-    @sunlight_info = word_data.sunlight_api_call("economy")
-
     @petitions = Petition.state_search(params[:search], @state).
       page(params[:page]).
       per(3)
