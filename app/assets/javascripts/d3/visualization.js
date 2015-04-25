@@ -48,7 +48,6 @@ function processData(data) {
         return {children: newDataSet};
     }
 
-
 function buildVisualization() {
   $.getJSON(window.location.pathname + '.json', function(data) {
 
@@ -61,11 +60,10 @@ function buildVisualization() {
             .padding(1.5)
             .value(function(d) {return d.size});
 
-
         var vis = d3.select('#state_chart').append('svg')
             .attr('width', w)
             .attr('height', h)
-            .attr("class", "bubble");
+            .attr("class", "bubble")
 
         var nodes = bubble.nodes(processData(data))
             .filter(function(d) { return !d.children; });
@@ -75,9 +73,9 @@ function buildVisualization() {
             .enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) {
-                console.log(d)
                 return "translate(" + d.x + "," + d.y + ")";
             });
+
 
         node.append("title")
             .text(function(d) {
@@ -92,36 +90,19 @@ function buildVisualization() {
             .attr("text-anchor", "middle")
             .attr("dy", ".3em")
             .text(function(d) {
-                return d.className
-              });
+                return d.className;
+                return d.size;
+              })
+            .style("fill", "white");
 
-          //
-          // var svg = d3.select('#state_chart').append('svg')
-          //  .attr('width', w)
-          //  .attr('height', h);
-          //
-          // var bubble = d3.layout.pack()
-          //  .size([w, h])
-          //  .padding(3)
-          //  .value(function(d) {return d.size});
-          //
-          // var nodes = bubble.nodes(processData(data))
-          //   .filter(function(d) {
-          //     console.log(d)
-          //     return !d.children; });
-          //
-          //   var vis = svg.selectAll('circle')
-          //             .data(nodes, function(d) { return d.name; });
-          //
-          //  vis.enter().append('circle')
-          //    .attr('transform', function(d) {
-          //      console.log(d)
-          //      return 'translate('+ d.x + ',' + d.y + ')'; })
-          //    .attr('r', function(d) { return d.r; })
-          //    .attr('class', function(d) { return d.className; });
-          //
-          //   vis.append("text")
-          //     .text(function(d) { return d.name })
-          //     .style("fill", "white");
+
+function animateCircle () {
+  d3.select(this).transition().attr("transform", "scale(" + (Math.random() * 1.2) + 10 + ")");
+};
+
+window.setInterval(function () {
+  vis.selectAll("circle").each(animateCircle);
+}, 500);
+
   });
 } // ends function

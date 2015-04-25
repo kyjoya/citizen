@@ -1,69 +1,152 @@
 @import 'variables';
 
+#title {
+  padding-top: 8vh;
+  h1 {
+    font-family: $h1-font;
+    color: $red;
+    text-align:center;
+  }
+  p {
+    font-family: $h1-font;
+    color: $red;
+    text-align:center;
+  }
+}
+
 #state_chart {
-  padding-top: 10vh;
+  padding-top: 6vh;
   width: 100%;
   margin-right: 10vh;
 }
 
-.economy {
-  fill: $red;
+.node {
+  font-family:$main-font;
+}
+
+.children {
+  fill: $teal;
   opacity: .8;
-  font-family: $main-font;
+}
+
+.budget {
+  fill: $teal;
+  opacity: .8;
+}
+
+.oil {
+  fill: $teal;
+  opacity: .8;
+}
+
+.class {
+  fill: $teal;
+  opacity: .8;
+}
+
+.medicare {
+  fill: $teal;
+  opacity: .8;
+}
+
+.welfare {
+  fill: $teal;
+  opacity: .8;
+}
+
+.debt {
+  fill: $teal;
+  opacity: .8;
+}
+
+.god {
+  fill: $teal;
+  opacity: .8;
+}
+
+.regulation {
+  fill: $teal;
+  opacity: .8;
+}
+
+.economy {
+  fill: $teal;
+  opacity: .8;
 }
 
 .women {
-  fill: $red;
+  fill: $teal;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .poverty {
-  fill: $red;
+  fill: $teal;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .business {
   fill: $mediumblue;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .jobs {
   fill: $lightblue;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .health {
   fill: $offwhite;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .energy {
   fill: $offwhite;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .workers {
   fill: $navyblue;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .climate {
   fill: $mediumblue;
   opacity: .8;
-  font-family: $main-font;
 }
 
 .equality {
+  fill: $chartred;
+  opacity: .8;
+}
+
+.families {
   fill: $lightblue;
   opacity: .8;
-  font-family: $main-font;
+}
+
+.tax {
+  fill: $mediumblue;
+  opacity: .8;
+}
+
+.military {
+  fill: $chartred;
+  opacity: .8;
+}
+
+.education {
+  fill: $teal;
+  opacity: .8;
+}
+
+.immigration {
+  fill: $mediumblue;
+  opacity: .8;
+}
+
+.government {
+  fill: $navyblue;
+  opacity: .8;
 }
 
 .panel {

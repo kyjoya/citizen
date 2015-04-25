@@ -104,8 +104,9 @@ state_converter = {
 
 
 words = ["economy", "women", "poverty", "business", "jobs", "health", "energy",
-  "workers", "climate", "equality", "business", "families", "tax", "military",
-  "education", "immigration", "government"]
+  "workers", "climate", "equality", "families", "tax", "military",
+  "education", "immigration", "government", "children", "budget", "oil",
+  "class", "medicare", "welfare", "debt", "god", "regulation"]
 
 states.each do |name|
   State.find_or_create_by(name: name)
