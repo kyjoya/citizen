@@ -51,74 +51,77 @@ function processData(data) {
 
 function buildVisualization() {
   $.getJSON(window.location.pathname + '.json', function(data) {
-          var diameter = 1000;
 
-          var svg = d3.select('#state_chart').append('svg')
-           .attr('width', diameter)
-           .attr('height', diameter);
+        var h = 1000
+        var w = 1500
+            format = d3.format(",d");
+
+        var bubble = d3.layout.pack()
+            .size([w, h])
+            .padding(1.5)
+            .value(function(d) {return d.size});
 
 
-          var bubble = d3.layout.pack()
-           .size([diameter, diameter])
-           .padding(3)
-           .value(function(d) {return d.size});
+        var vis = d3.select('#state_chart').append('svg')
+            .attr('width', w)
+            .attr('height', h)
+            .attr("class", "bubble");
 
-          // var stuff = processData(data);
-
-          var nodes = bubble.nodes(processData(data))
+        var nodes = bubble.nodes(processData(data))
             .filter(function(d) { return !d.children; });
 
-            var vis = svg.selectAll('circle')
-                      .data(nodes, function(d) { return d.name; });
+        var node = vis.selectAll("g.node")
+            .data(nodes, function(d) { return d.name; })
+            .enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) {
+                console.log(d)
+                return "translate(" + d.x + "," + d.y + ")";
+            });
 
-           vis.enter().append('circle')
-             .attr('transform', function(d) { return 'translate('
-                + d.x + ',' + d.y + ')'; })
-             .attr('r', function(d) { return d.r; })
-             .attr('class', function(d) { return d.className; });
+        node.append("title")
+            .text(function(d) {
+                return d.className;
+            });
+
+        node.append("circle")
+            .attr("r", function(d) { return d.r; })
+            .attr('class', function(d) { return d.className; });
+
+        node.append("text")
+            .attr("text-anchor", "middle")
+            .attr("dy", ".3em")
+            .text(function(d) {
+                return d.className
+              });
+
+          //
+          // var svg = d3.select('#state_chart').append('svg')
+          //  .attr('width', w)
+          //  .attr('height', h);
+          //
+          // var bubble = d3.layout.pack()
+          //  .size([w, h])
+          //  .padding(3)
+          //  .value(function(d) {return d.size});
+          //
+          // var nodes = bubble.nodes(processData(data))
+          //   .filter(function(d) {
+          //     console.log(d)
+          //     return !d.children; });
+          //
+          //   var vis = svg.selectAll('circle')
+          //             .data(nodes, function(d) { return d.name; });
+          //
+          //  vis.enter().append('circle')
+          //    .attr('transform', function(d) {
+          //      console.log(d)
+          //      return 'translate('+ d.x + ',' + d.y + ')'; })
+          //    .attr('r', function(d) { return d.r; })
+          //    .attr('class', function(d) { return d.className; });
+          //
+          //   vis.append("text")
+          //     .text(function(d) { return d.name })
+          //     .style("fill", "white");
   });
 } // ends function
-          // var diameter = 960
-          // format = d3.format(",d"),
-          // color = d3.scale.category20c();
-          //
-          //   var bubble = d3.layout.pack()
-          //     .size([d, d])
-          //     .padding(1.5);
-          //
-          // var svg = d3.select("#state_chart").append("svg")
-          //     .attr("width", w)
-          //     .attr("height", h)
-          //     .attr("class", "bubble");
-          //
-          // var node = svg.selectAll("circle")
-          //      .data(data)
-          //      .enter()
-          //      .append("circle")
-          //      .attr("cx", function(d, i) {
-          //       return (i * 125) + 35;
-          //     })
-          //    .attr("cy", w/5)
-          //    .attr("r", function(d) {
-          //         return d["count"] / 125;
-          //    })
-          //   .transition()
-          //   .duration(2000);
-          //
-          // var labels = svg.selectAll("text")
-          //    .data(data)
-          //    .enter()
-          //    .append("text")
-          //    .text(function(d) {
-          //         return d["word"];
-          //    })
-          //    .attr("cx", function(d, i) {
-          //       return (i * 125) + 35;
-          //     })
-          //    .attr("cy", w/5)
-
-          // node.append("text")
-          //    .attr("font-size", "24px")
-          //    .attr("font-family", "sans-serif")
-          //    .attr("fill", "black")
-          //    .text(function(d) { return d["word"]; });

@@ -1,2 +1,2 @@
-$('#petitions').html('<%= escape_javascript render(@petitions) %>');
+$('#all_petitions').html('<%= escape_javascript render(@petitions) %>');
 $('#paginator').html('<%= escape_javascript(paginate(@petitions, remote: true).to_s) %>');

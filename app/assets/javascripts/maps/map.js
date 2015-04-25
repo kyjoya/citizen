@@ -11,7 +11,6 @@ function buildMap() {
         enableZoom: false,
         onRegionClick: function (event, code, region) {
           color: '#FFFFFF',
-          console.log(code)
           window.location = "states/" + region
         }
     });

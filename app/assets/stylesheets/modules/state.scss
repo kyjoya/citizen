@@ -3,7 +3,71 @@
 #state_chart {
   padding-top: 10vh;
   width: 100%;
-  margin: 0;
+  margin-right: 10vh;
+}
+
+.economy {
+  fill: $red;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.women {
+  fill: $red;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.poverty {
+  fill: $red;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.business {
+  fill: $mediumblue;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.jobs {
+  fill: $lightblue;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.health {
+  fill: $offwhite;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.energy {
+  fill: $offwhite;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.workers {
+  fill: $navyblue;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.climate {
+  fill: $mediumblue;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.equality {
+  fill: $lightblue;
+  opacity: .8;
+  font-family: $main-font;
+}
+
+.panel {
+  background: $offwhite;
 }
 
 .inline-list li a {
