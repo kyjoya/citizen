@@ -45,15 +45,13 @@ function processData(data) {
           name: data[i]["word"], className: data[i]["word"], size: data[i]["count"]
         });
       }
-
         return {children: newDataSet};
-
     }
 
 
 function buildVisualization() {
   $.getJSON(window.location.pathname + '.json', function(data) {
-          var diameter = 600;
+          var diameter = 1000;
 
           var svg = d3.select('#state_chart').append('svg')
            .attr('width', diameter)

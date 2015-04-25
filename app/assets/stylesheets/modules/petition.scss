@@ -1,8 +1,14 @@
 @import 'variables';
 
-#petitions_div {
-  margin-top: 2%;
-  padding: 1em;
+#new_petition {
+  text-align: center;
+  font-size: 3em;
+}
+
+#petition_form .button {
+  font-family: $main-font;
+  background: $red;
+  color: $offwhite;
 }
 
 #arrow-up {
@@ -30,7 +36,15 @@
 #all_petitions .button {
   background-color: $red;
   font-family: $main-font;
-  padding: .05em;
+  margin-top: .1em;
+    a {
+      color: $offwhite;
+    }
+}
+
+#popular_petitions .button {
+  background-color: $red;
+  font-family: $main-font;
   margin-top: .1em;
     a {
       color: $offwhite;

@@ -7,10 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="top-bar" class="fixed">
+
+<div class="fixed">
+  <nav class="top-bar">
     <section class="top-bar-section">
       <% if params[:id] %>
-        <h4 id="logo"><a href="/states/<%= @state.name %>"><%= @state.name %></a></h4>
+        <h4 id="logo"><a href="/states/<%= @state.name %>"><%= @state.name %></a></h4> 
       <% else %>
         <h4 id="logo"><a href="/">Citizen</a></h4>
       <% end %>
@@ -44,6 +46,7 @@
       </ul>
     </section>
   </nav>
+</div>
 
     <%- flash.each do |key, value| -%>
       <div class="flash flash-<%= key %>">
