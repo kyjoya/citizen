@@ -1,35 +1,39 @@
-<div class="small-12 columns" id="state_header">
-    <h1><%= @state.name %></h1>
-    <p><a href="#petitions_div"><%= @state.name %> Petitions</a></p>
-    <p><a href="#rep_info"><%= @state.name %> Voter Information</a></p>
+<div class="small-8 small-centered columns" id="title">
+  <h1>Do your reps care about your interests?</h1>
+  <p>Check out how frequently <%= @state.name %> representatives use the words below in Congress.</p>
 </div>
 
-<div id="state_chart">
+<hr class="page_break">
 
+<div id="state_chart"></div>
 
-</div>
+<hr class="page_break">
 
-<div class="small-12 columns">
-  <input type="text_field" name="add_to_chart" value="Add Word To Chart">
-  <input type="button" name="name" value="Add">
-</div>
-
-<div class="small-12 columns" id="petitions_div">
-  <div class="small-12 columns" id="new_petition">
-    <%= render 'petitions/new' %>
-  </div>
-
+<div id="petitions">
   <div class="row">
-    <div class="large-12 columns" id="all_petitions">
+    <div class="large-12 columns" id="popular_petitions">
       <div class="row">
-        <% @petitions.top_five.each do |petition| %>
-          <div class="large-3 small-6 columns">
+        <h1>Most Popular Petitions in <%= @state.name %></h1>
+        <% @petitions.top_petitions.each do |petition| %>
+          <div class="large-3 small-6 columns" id="petition_carousel">
             <div class="panel">
-              <%= image_tag petition.image.url, size: '100x100' %>
+              <%= image_tag petition.image.url, size: '150x150' %>
               <h4><%= link_to petition.name,
               state_petition_path(id: petition, state_id: petition.state) %></h4>
+              <hr>
+              <p>Created by:</p>
               <p><%= petition.owner?(petition.owner_id) %></p>
-              <p><%= petition.signature_count %></p>
+              <p>Signatures: <%= petition.signature_count %></p>
+              <% if current_user && !petition.users.include?(current_user) %>
+                <div class="button small radius">
+                  <%= link_to 'Sign Petition', petition_memberships_path(petition_id: petition.id,
+                        user: current_user.id, id: petition.state), method: :post %>
+                </div>
+              <% elsif petition.users.include?(current_user) %>
+                <div class="button small radius">
+                   You've signed!
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -37,46 +41,67 @@
     </div>
   </div>
 
-  <div class="small-6 small-centered columns" id="all_petitions">
+<% if current_user %>
+  <hr>
+  <div id="form">
+    <div id="new_petition"><i class="fi-clipboard-pencil"></i></div>
+
+    <div class="small-12 columns" id="petition_form">
+      <%= render 'petitions/new' %>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+  <div class="small-10 small-centered columns" id="all_petitions">
     <% @petitions.each do |petition| %>
-    <div class="panel">
-        <%= image_tag petition.image.url, size: '100x100' %>
-        <p><%= link_to petition.name,
-          state_petition_path(id: petition, state_id: petition.state) %></p>
-        <p><%= petition.owner?(petition.owner_id) %></p>
+    <div class="panel" id="petitions">
+        <%= image_tag petition.image.url, size: '150x150' %>
+        <h4><%= link_to petition.name,
+          state_petition_path(id: petition, state_id: petition.state) %></h4>
         <p><%= petition.description %></p>
-        <p><%= petition.signature_count %></p>
+        <hr>
+        <p>Created by: <%= petition.owner?(petition.owner_id) %></p>
+        <p>Signatures: <%= petition.signature_count %></p>
+        <%  if current_user %>
+          <div class="button small radius">
+              <%= link_to 'Sign Petition', petition_memberships_path(petition_id: petition.id,
+                  user: current_user.id, id: petition.state), method: :post %>
+          </div>
+        <% end %>
     </div>
     <% end %>
+    <div id="paginator">
+      <%= paginate @petitions %>
+    </div>
   </div>
 </div>
-
+</div>
+<hr class="page_break">
 <div class="small-12 columns" id="state_info">
-<div class="small-7 columns"id="_vit" class="voter_tool"></div>
-  <div class="small-5 columns" id="rep_info">
-    <p>
-      <% @state_info["officials"].each do |thing| %>
-        <%= thing["name"] %>
-        <%= thing["address"][0]["line1"] %>
-        <%= thing["address"][0]["line2"] %>
-        <%= thing["address"][0]["city"] %>
-        <%= thing["address"][0]["state"] %>
-        <%= thing["address"][0]["zip"] %>
-        <%= thing["party"] %>
-        <%= thing["name"] %>
-        <%= thing["phones"] %>
-      <% end %>
-    </p>
+<div class="small-6 columns" id="_vit"></div>
+  <div class="small-6 columns" id="rep_info">
+    <ul id="civic_info">
+      <h2><%= @state.name %> Representatives</h2>
+      <hr>
+        <% @state_info.each do |official| %>
+          <% official.each do |k,v| %>
+          <% if v.is_a? String %>
+            <li><%= v %></li>
+          <% end %>
+          <% end %>
+          <hr>
+        <% end %>
+    </ul>
   </div>
 </div>
 
 <% content_for :extra_footer do %>
-  <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
+<script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
   <script>
     $(function() {
-      // scroll();
       buildVisualization();
     });
-    // vit.load({'region': '<%= @state.name %>'});
+    vit.load({'region': '<%= @state.name %>'});
   </script>
 <% end %>

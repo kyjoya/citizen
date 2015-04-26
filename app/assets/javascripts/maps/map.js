@@ -6,12 +6,12 @@ function buildMap() {
         backgroundColor: '#FFFFFF',
         borderColor: '#ECF0F1',
         color: '#2C3E50',
-        hoverColor: '#E74C3C',
+        hoverColor: '#3C2200',
         selectedColor: '#FFFFFF',
         enableZoom: false,
+        showTooptip: false,
         onRegionClick: function (event, code, region) {
           color: '#FFFFFF',
-          console.log(code)
           window.location = "states/" + region
         }
     });

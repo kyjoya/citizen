@@ -1,12 +1,7 @@
-<div class="small-12 columns">
-  <div class="inline-list" id="petition_page">
-    <li><%= link_to "#{@petition.state.name} Home", state_path(id: params[:state_id]) %></li>
-    <li><%= link_to "All Petitions", petitions_path %></li>
-  </div>
-
+<div class="small-12 columns" id="petition_page">
   <h1><%= @petition.name %></h1>
-  <%= image_tag @petition.image.url, size: "100x100" %>
-  <%= @petition.description  %>
+  <%= image_tag @petition.image.url, size: "300x300" %>
+  <p><%= @petition.description  %></p>
 
   <% if !current_user.nil? && !@petition.users.include?(current_user) %>
     <div class="button">
@@ -15,12 +10,11 @@
     </div>
   <% end %>
 
-  <h4>Signees</h4>
+  <h4>Signatures</h4>
   <div class="small-12 columns">
     <% if @petition.users.include?(current_user) %>
       <% @petition.users.each do |name| %>
-        <%= name.first_name %>
-        <%= name.last_name %>
+        <li><%= name.first_name %> <%= name.last_name %></li>
       <% end %>
     <% end %>
   </div>

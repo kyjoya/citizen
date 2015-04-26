@@ -14,6 +14,9 @@ gem 'foundation-rails', '5.5.1.0'
 gem 'pry-rails'
 gem 'faker'
 gem 'httparty'
+gem 'kaminari'
+gem "active_model_serializers", "0.8.3"
+gem 'font-awesome-rails'
 
 group :production do
   gem 'rails_12factor'

@@ -1,94 +1,129 @@
-function stateConverter(pathName) {
-  var state = pathNameConverter(pathName);
-    var states = new Array (
-        {'name':'Alabama', 'abbrev':'AL'},          {'name':'Alaska', 'abbrev':'AK'},
-        {'name':'Arizona', 'abbrev':'AZ'},          {'name':'Arkansas', 'abbrev':'AR'},         {'name':'California', 'abbrev':'CA'},
-        {'name':'Colorado', 'abbrev':'CO'},         {'name':'Connecticut', 'abbrev':'CT'},      {'name':'Delaware', 'abbrev':'DE'},
-        {'name':'Florida', 'abbrev':'FL'},          {'name':'Georgia', 'abbrev':'GA'},          {'name':'Hawaii', 'abbrev':'HI'},
-        {'name':'Idaho', 'abbrev':'ID'},            {'name':'Illinois', 'abbrev':'IL'},         {'name':'Indiana', 'abbrev':'IN'},
-        {'name':'Iowa', 'abbrev':'IA'},             {'name':'Kansas', 'abbrev':'KS'},           {'name':'Kentucky', 'abbrev':'KY'},
-        {'name':'Louisiana', 'abbrev':'LA'},        {'name':'Maine', 'abbrev':'ME'},            {'name':'Maryland', 'abbrev':'MD'},
-        {'name':'Massachusetts', 'abbrev':'MA'},    {'name':'Michigan', 'abbrev':'MI'},         {'name':'Minnesota', 'abbrev':'MN'},
-        {'name':'Mississippi', 'abbrev':'MS'},      {'name':'Missouri', 'abbrev':'MO'},         {'name':'Montana', 'abbrev':'MT'},
-        {'name':'Nebraska', 'abbrev':'NE'},         {'name':'Nevada', 'abbrev':'NV'},           {'name':'New Hampshire', 'abbrev':'NH'},
-        {'name':'New Jersey', 'abbrev':'NJ'},       {'name':'New Mexico', 'abbrev':'NM'},       {'name':'New York', 'abbrev':'NY'},
-        {'name':'North Carolina', 'abbrev':'NC'},   {'name':'North Dakota', 'abbrev':'ND'},     {'name':'Ohio', 'abbrev':'OH'},
-        {'name':'Oklahoma', 'abbrev':'OK'},         {'name':'Oregon', 'abbrev':'OR'},           {'name':'Pennsylvania', 'abbrev':'PA'},
-        {'name':'Rhode Island', 'abbrev':'RI'},     {'name':'South Carolina', 'abbrev':'SC'},   {'name':'South Dakota', 'abbrev':'SD'},
-        {'name':'Tennessee', 'abbrev':'TN'},        {'name':'Texas', 'abbrev':'TX'},            {'name':'Utah', 'abbrev':'UT'},
-        {'name':'Vermont', 'abbrev':'VT'},          {'name':'Virginia', 'abbrev':'VA'},         {'name':'Washington', 'abbrev':'WA'},
-        {'name':'West Virginia', 'abbrev':'WV'},    {'name':'Wisconsin', 'abbrev':'WI'},        {'name':'Wyoming', 'abbrev':'WY'}
-      );
+// function stateConverter(pathName) {
+//   var state = pathNameConverter(pathName);
+//     var states = new Array (
+//         {'name':'Alabama', 'abbrev':'AL'},          {'name':'Alaska', 'abbrev':'AK'},
+//         {'name':'Arizona', 'abbrev':'AZ'},          {'name':'Arkansas', 'abbrev':'AR'},         {'name':'California', 'abbrev':'CA'},
+//         {'name':'Colorado', 'abbrev':'CO'},         {'name':'Connecticut', 'abbrev':'CT'},      {'name':'Delaware', 'abbrev':'DE'},
+//         {'name':'Florida', 'abbrev':'FL'},          {'name':'Georgia', 'abbrev':'GA'},          {'name':'Hawaii', 'abbrev':'HI'},
+//         {'name':'Idaho', 'abbrev':'ID'},            {'name':'Illinois', 'abbrev':'IL'},         {'name':'Indiana', 'abbrev':'IN'},
+//         {'name':'Iowa', 'abbrev':'IA'},             {'name':'Kansas', 'abbrev':'KS'},           {'name':'Kentucky', 'abbrev':'KY'},
+//         {'name':'Louisiana', 'abbrev':'LA'},        {'name':'Maine', 'abbrev':'ME'},            {'name':'Maryland', 'abbrev':'MD'},
+//         {'name':'Massachusetts', 'abbrev':'MA'},    {'name':'Michigan', 'abbrev':'MI'},         {'name':'Minnesota', 'abbrev':'MN'},
+//         {'name':'Mississippi', 'abbrev':'MS'},      {'name':'Missouri', 'abbrev':'MO'},         {'name':'Montana', 'abbrev':'MT'},
+//         {'name':'Nebraska', 'abbrev':'NE'},         {'name':'Nevada', 'abbrev':'NV'},           {'name':'New Hampshire', 'abbrev':'NH'},
+//         {'name':'New Jersey', 'abbrev':'NJ'},       {'name':'New Mexico', 'abbrev':'NM'},       {'name':'New York', 'abbrev':'NY'},
+//         {'name':'North Carolina', 'abbrev':'NC'},   {'name':'North Dakota', 'abbrev':'ND'},     {'name':'Ohio', 'abbrev':'OH'},
+//         {'name':'Oklahoma', 'abbrev':'OK'},         {'name':'Oregon', 'abbrev':'OR'},           {'name':'Pennsylvania', 'abbrev':'PA'},
+//         {'name':'Rhode Island', 'abbrev':'RI'},     {'name':'South Carolina', 'abbrev':'SC'},   {'name':'South Dakota', 'abbrev':'SD'},
+//         {'name':'Tennessee', 'abbrev':'TN'},        {'name':'Texas', 'abbrev':'TX'},            {'name':'Utah', 'abbrev':'UT'},
+//         {'name':'Vermont', 'abbrev':'VT'},          {'name':'Virginia', 'abbrev':'VA'},         {'name':'Washington', 'abbrev':'WA'},
+//         {'name':'West Virginia', 'abbrev':'WV'},    {'name':'Wisconsin', 'abbrev':'WI'},        {'name':'Wyoming', 'abbrev':'WY'}
+//       );
+//
+//     var returnthis = false;
+//
+//     $.each(states, function(index, value) {
+//           if (value.name == state) {
+//             returnthis = value.abbrev
+//           }
+//         });
+//       return returnthis;
+// }
+//
+// function pathNameConverter(pathName) {
+//   return pathName.split('/')[2]
+// }
 
-    $.each(states, function(index, value) {
-          if (value.name == state) {
-            return value.abbrev
-          }
+
+function processData(data) {
+      var data = data.states;
+      var newDataSet = [];
+
+      for(var i in data) {
+
+        newDataSet.push({
+          name: data[i]["word"], className: data[i]["word"], size: data[i]["count"]
         });
-}
-  // if state == "Pennsylvania"
-  // return PA
-
-  // use state full name to return back the abbreviated
-  // version
-
-
-function pathNameConverter(pathName) {
-  return pathName.split('/')[2]
-}
-
+      }
+        return {children: newDataSet};
+    }
 
 function buildVisualization() {
-  var results = [];
-  var keyWords = ["economy", "women", "poverty", "civil rights", "business", "jobs", "health", "energy", "climate change", "workers"]
-  for (var i = 0; i < keyWords.length; i++) {
+  $.getJSON(window.location.pathname + '.json', function(data) {
 
-    var query_params = { apikey: '19584ee72a4e48f584e5115096739392',
-                        phrase: keyWords[i],
-                        sort: 'count desc',
-                        state: stateConverter(window.location.pathname) };
+        var h = 1000
+        var w = 1300
+            format = d3.format(",d");
 
-    var endpoint = 'http://capitolwords.org/api/phrases/state.json';
+        var bubble = d3.layout.pack()
+            .size([w, h])
+            .padding(1.5)
+            .value(function(d) {return d.size});
 
-    var options = {
-      data: query_params,
-      type: 'GET',
-      dataType: 'jsonp'
-    };
+        var vis = d3.select('#state_chart').append('svg')
+            .attr('width', w)
+            .attr('height', h)
+            .attr("class", "bubble")
 
-    $.ajax(endpoint, options, results).success(function(data) {
-      var count = data.results[0]["count"];
-      results.push(count);
-        if (results.length == 10) {
+        var nodes = bubble.nodes(processData(data))
+            .filter(function(d) { return !d.children; });
 
-          var diameter = 2000,
-          format = d3.format(",d"),
-          color = d3.scale.category20c();
+        var node = vis.selectAll("g.node")
+            .data(nodes, function(d) { return d.name; })
+            .enter().append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
 
-            var bubble = d3.layout.pack()
-              .sort(null)
-              .size([diameter, diameter])
-              .padding(1.5);
+        node.append("title")
+            .text(function(d) {
+                return d.className;
+            });
 
-          var svg = d3.select("#state_chart").append("svg")
-              .attr("width", diameter)
-              .attr("height", diameter)
-              .attr("class", "bubble");
-
-          var node = svg.selectAll("circle")
-               .data(results)
-               .enter()
-               .append("circle");
-
-          node.attr("cx", function(d, i) {
-                return (i * 175) + 100;
+        node.append("circle")
+            .attr("r", function(d) { return d.r; })
+            .attr('class', function(d) { return d.className; })
+            .style("fill", "#ECF0F1")
+            .style("stroke", "#00263C")
+            .on("mouseover", function(d){
+                  d3.select(this)
+                      .transition()
+                      .duration(400)
+                      .style("fill", "#3498DB")
               })
-             .attr("cy", diameter/2)
-             .attr("r", function(d) {
-                  return d / 250;
-             })
-             .attr("fill", "yellow");
+              .on("mouseout", function(d){
+                  d3.select(this)
+                      .transition()
+                      .duration(400)
+                      .style("fill", "#6F270B")
+              });
+
+        node.append("text")
+            .attr("text-anchor", "middle")
+            .text(function(d) {
+                return d.className;
+              })
+            .style("fill", "#00263C")
+            .style("font-size", "1px")
+            .each(getSize)
+            .style("font-size", function(d) { return d.scale - 5 + "px"; });
+
+        function getSize(d) {
+          var bbox = this.getBBox(),
+              cbbox = this.parentNode.getBBox(),
+              scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
+          d.scale = scale;
         };
-    });
-  }
-}
+
+
+// function animateCircle () {
+//   d3.select(this).transition().attr("transform", "r(" + (Math.random() * 1.2) + 10 + ")");
+// };
+//
+// window.setInterval(function () {
+//   vis.selectAll("circle").each(animateCircle);
+// }, 500);
+
+  });
+} // ends function

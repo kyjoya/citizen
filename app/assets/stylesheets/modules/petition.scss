@@ -1,0 +1,75 @@
+@import 'variables';
+
+#new_petition {
+  text-align: center;
+  font-size: 3em;
+}
+
+#petition_form .button {
+  font-family: $main-font;
+  background: $red;
+  color: $offwhite;
+}
+
+#arrow-up {
+  position: relative;
+  height: 3em;
+  width: 1em;
+  border: 1px solid red;
+}
+
+#all_petitions {
+  font-family: $main-font;
+    a {
+      color: $red;
+    }
+}
+
+#petition_page {
+  margin-top: 5em;
+  text-align: center;
+  font-family: $main-font;
+  h1 {
+    font-family: $main-font;
+    color: $red;
+  }
+  p {
+    padding-top: 1em;
+  }
+  h4 {
+    color: $red;
+    font-family: $main-font;
+    text-decoration: underline;
+  }
+}
+
+#single_petition {
+  border: 1px solid $red;
+}
+
+#all_petitions .button {
+  background-color: $red;
+  font-family: $main-font;
+  margin-top: .1em;
+    a {
+      color: $offwhite;
+    }
+}
+
+#popular_petitions .button {
+  background-color: $red;
+  font-family: $main-font;
+  margin-top: .1em;
+    a {
+      color: $offwhite;
+    }
+}
+
+#petitions_index .button {
+  background-color: $red;
+  font-family: $main-font;
+  margin: 0;
+    a {
+      color: $offwhite;
+    }
+}

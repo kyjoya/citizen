@@ -7,9 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="top-bar" class="fixed">
+
+  <nav class="top-bar">
     <section class="top-bar-section">
-      <h4 id="logo"><a href="/">Citizen</a></h4>
+      <% if params[:id] && @state %>
+        <h4 id="logo"><a href="/states/<%= @state.name %>"><%= @state.name %></a></h4>
+      <% else %>
+        <h4 id="logo"><a href="/">Citizen</a></h4>
+      <% end %>
 
       <ul class="right">
         <%- if current_user.try(:admin?) %>
@@ -25,13 +30,20 @@
       </ul>
     </section>
 
-
     <section class="top-bar-section">
       <ul class="left">
-        <li><%= link_to 'Petitions', petitions_path %></li>
+        <% if params[:id] %>
+          <li id="side_logo"><h3><a href="/">C</a></h3></li>
+          <li><%= link_to 'National Petitions', petitions_path %></li>
+        <% elsif params[:id] && @state %>
+          <li><a href="#petitions_div"><%= params[:id] %> Petitions</a></li>
+        <% else %>
+          <li><%= link_to 'National Petitions', petitions_path %></li>
+        <% end %>
       </ul>
     </section>
   </nav>
+
 
     <%- flash.each do |key, value| -%>
       <div class="flash flash-<%= key %>">

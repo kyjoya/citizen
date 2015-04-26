@@ -1,31 +1,195 @@
 @import 'variables';
 
-#state_header {
-  height: 15em;
-      p {
-      text-align: center;
-      margin: 0;
-      font-family: $main-font;
-        a {
-          color: $red;
-        }
-    }
+#title {
+  padding-top: 8vh;
+  h1 {
+    font-family: $h1-font;
+    color: $red;
+    text-align:center;
+  }
+  p {
+    font-family: $h1-font;
+    color: $red;
+    text-align:center;
+  }
 }
 
-#state_header h1 {
-  text-align: center;
-  margin-top: 5vh;
-  position: relative;
-  font-family: $h1-font;
+#state_chart {
+  padding-top: 6vh;
+  width: 100%;
+  padding: 10vh;
+  .bubble {
+    position: middle;
+  }
 }
 
-#state_chart .bubble circle {
-  background-color: teal;
+.node {
+  font-family:$main-font;
+}
+
+.children {
+  opacity: .8;
+}
+
+.budget {
+  opacity: .8;
+}
+
+.oil {
+  opacity: .8;
+}
+
+.class {
+  opacity: .8;
+}
+
+.medicare {
+  opacity: .8;
+}
+
+.welfare {
+  opacity: .8;
+}
+
+.debt {
+  opacity: .8;
+}
+
+.god {
+  opacity: .8;
+}
+
+.regulation {
+  opacity: .8;
+}
+
+.economy {
+  opacity: .8;
+}
+
+.women {
+  opacity: .8;
+}
+
+.poverty {
+  opacity: .8;
+}
+
+.business {
+  opacity: .8;
+}
+
+.jobs {
+  opacity: .8;
+}
+
+.health {
+  opacity: .8;
+}
+
+.energy {
+  opacity: .8;
+}
+
+.workers {
+  opacity: .8;
+}
+
+.climate {
+  opacity: .8;
+}
+
+.equality {
+  opacity: .8;
+}
+
+.families {
+  opacity: .8;
+}
+
+.tax {
+  opacity: .8;
+}
+
+.military {
+  opacity: .8;
+}
+
+.education {
+  opacity: .8;
+}
+
+.immigration {
+  opacity: .8;
+}
+
+.government {
+  opacity: .8;
+}
+
+.panel {
+  background: $offwhite;
 }
 
 .inline-list li a {
   font-family: $main-font;
   text-align: center;
+}
+#petitions {
+    padding: 1em;
+}
+
+#popular_petitions {
+  h1 {
+    font-family: $h1-font;
+    color: $navyblue;
+    text-align: center;
+  }
+    p {
+      font-family: $main-font;
+      color: $navyblue;
+      margin: 0;
+    }
+}
+
+#popular_petitions h4 {
+  a {
+    font-family: $h1-font;
+    color: $red;
+    padding: 0;
+  }
+}
+
+#popular_petitions img {
+  padding: 1em;
+}
+
+#all_petitions img {
+  float: left;
+  height: 100%;
+  padding: 1em;
+  position: relative;
+}
+
+#all_petitions h4 {
+  a {
+    font-family: $h1-font;
+    color: $red;
+    padding: 0;
+  }
+}
+
+#all_petitions p {
+  font-family: $main-font;
+  color: $navyblue;
+  margin: 0;
+}
+
+.page_break {
+  color: $red;
+  background-color: $red;
+  height: 5px;
+  margin: 0;
 }
 
 #state_info {
@@ -35,19 +199,30 @@
   overflow: hidden;
 }
 
+#voter_tool {
+  width: 10em;
+}
+
 #rep_info {
+  margin-top: .5em;
   height: 35em;
   overflow-y: scroll;
   overflow-x: hidden;
-  p {
+  ul {
     width: 100%;
     font-family: $main-font;
     color: $offwhite;
+    list-style-type: none;
   }
 }
 
-.voter_information {
-  padding-top: 2em;
-  padding-bottom: 2em;
-  width: 25em;
+#rep_info h2 {
+  font-family: $h1-font;
+  color: $offwhite;
+}
+
+div#_vit {
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  float: left;
 }

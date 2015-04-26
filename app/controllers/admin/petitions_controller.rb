@@ -1,4 +1,6 @@
 class Admin::PetitionsController < ApplicationController
+  before_action :authenticate!
+
   def index
     @petitions = Petition.limit(20)
   end

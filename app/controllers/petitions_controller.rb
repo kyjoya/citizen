@@ -6,7 +6,8 @@ class PetitionsController < ApplicationController
     if params[:search]
       @petitions = Petition.search(params[:search])
     else
-      @petitions = Petition.limit(20) || "No petitions yet!"
+      @petitions = Petition.page(params[:page]).
+      per(3)
     end
   end
 
@@ -19,6 +20,7 @@ class PetitionsController < ApplicationController
     @petition = @state.petitions.new(petition_params)
     @petition.owner_id = current_user.id
 
+
     if @petition.save
       redirect_to state_path(@state), notice: "Added."
     else
@@ -28,6 +30,7 @@ class PetitionsController < ApplicationController
 
   def show
     @petition = Petition.find(params[:id])
+    @state = State.find_by(name: params[:state_id])
   end
 
   def edit
