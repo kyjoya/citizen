@@ -52,7 +52,7 @@ function buildVisualization() {
   $.getJSON(window.location.pathname + '.json', function(data) {
 
         var h = 1000
-        var w = 1500
+        var w = 1300
             format = d3.format(",d");
 
         var bubble = d3.layout.pack()
@@ -76,7 +76,6 @@ function buildVisualization() {
                 return "translate(" + d.x + "," + d.y + ")";
             });
 
-
         node.append("title")
             .text(function(d) {
                 return d.className;
@@ -84,25 +83,47 @@ function buildVisualization() {
 
         node.append("circle")
             .attr("r", function(d) { return d.r; })
-            .attr('class', function(d) { return d.className; });
+            .attr('class', function(d) { return d.className; })
+            .style("fill", "#ECF0F1")
+            .style("stroke", "#00263C")
+            .on("mouseover", function(d){
+                  d3.select(this)
+                      .transition()
+                      .duration(400)
+                      .style("fill", "#3498DB")
+              })
+              .on("mouseout", function(d){
+                  d3.select(this)
+                      .transition()
+                      .duration(400)
+                      .style("fill", "#6F270B")
+              });
 
         node.append("text")
             .attr("text-anchor", "middle")
-            .attr("dy", ".3em")
             .text(function(d) {
                 return d.className;
-                return d.size;
               })
-            .style("fill", "white");
+            .style("fill", "#00263C")
+            .style("font-size", "1px")
+            .each(getSize)
+            .style("font-size", function(d) { return d.scale - 5 + "px"; });
+
+        function getSize(d) {
+          var bbox = this.getBBox(),
+              cbbox = this.parentNode.getBBox(),
+              scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
+          d.scale = scale;
+        };
 
 
-function animateCircle () {
-  d3.select(this).transition().attr("transform", "scale(" + (Math.random() * 1.2) + 10 + ")");
-};
-
-window.setInterval(function () {
-  vis.selectAll("circle").each(animateCircle);
-}, 500);
+// function animateCircle () {
+//   d3.select(this).transition().attr("transform", "r(" + (Math.random() * 1.2) + 10 + ")");
+// };
+//
+// window.setInterval(function () {
+//   vis.selectAll("circle").each(animateCircle);
+// }, 500);
 
   });
 } // ends function

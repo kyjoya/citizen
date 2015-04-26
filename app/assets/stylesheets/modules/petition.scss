@@ -25,8 +25,22 @@
     }
 }
 
-#petition_page li a {
+#petition_page {
+  margin-top: 5em;
   text-align: center;
+  font-family: $main-font;
+  h1 {
+    font-family: $main-font;
+    color: $red;
+  }
+  p {
+    padding-top: 1em;
+  }
+  h4 {
+    color: $red;
+    font-family: $main-font;
+    text-decoration: underline;
+  }
 }
 
 #single_petition {

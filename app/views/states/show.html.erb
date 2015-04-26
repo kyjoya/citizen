@@ -1,10 +1,14 @@
 <div class="small-8 small-centered columns" id="title">
-  <h1>Do your reps know your interests?</h1>
+  <h1>Do your reps care about your interests?</h1>
   <p>Check out how frequently <%= @state.name %> representatives use the words below in Congress.</p>
 </div>
+
 <hr class="page_break">
+
 <div id="state_chart"></div>
+
 <hr class="page_break">
+
 <div id="petitions">
   <div class="row">
     <div class="large-12 columns" id="popular_petitions">
@@ -68,7 +72,7 @@
     </div>
     <% end %>
     <div id="paginator">
-      <%= paginate @petitions, remote: true %>
+      <%= paginate @petitions %>
     </div>
   </div>
 </div>
@@ -80,17 +84,14 @@
     <ul id="civic_info">
       <h2><%= @state.name %> Representatives</h2>
       <hr>
-      <% @state_info["officials"].each do |information| %>
-        <li><%= information["name"] %></li>
-        <li><%= information["address"][0]["line1"] || "" %></li>
-        <li><%= information["address"][0]["line2"] || "" %></li>
-        <li><%= information["address"][0]["city"] || "" %></li>
-        <li><%= information["address"][0]["state"] || "" %></li>
-        <li><%= information["address"][0]["zip"] || "" %></li>
-        <li><%= information["party"] || "" %></li>
-        <li><%= information["phones"].join || "" %></li>
-        <hr>
-      <% end %>
+        <% @state_info.each do |official| %>
+          <% official.each do |k,v| %>
+          <% if v.is_a? String %>
+            <li><%= v %></li>
+          <% end %>
+          <% end %>
+          <hr>
+        <% end %>
     </ul>
   </div>
 </div>
@@ -99,10 +100,8 @@
 <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
   <script>
     $(function() {
-
-      scroll();
       buildVisualization();
     });
-    // vit.load({'region': '<%= @state.name %>'});
+    vit.load({'region': '<%= @state.name %>'});
   </script>
 <% end %>

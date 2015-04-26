@@ -8,11 +8,10 @@
 </head>
 <body>
 
-<div class="fixed">
   <nav class="top-bar">
     <section class="top-bar-section">
-      <% if params[:id] %>
-        <h4 id="logo"><a href="/states/<%= @state.name %>"><%= @state.name %></a></h4> 
+      <% if params[:id] && @state %>
+        <h4 id="logo"><a href="/states/<%= @state.name %>"><%= @state.name %></a></h4>
       <% else %>
         <h4 id="logo"><a href="/">Citizen</a></h4>
       <% end %>
@@ -21,9 +20,6 @@
         <%- if current_user.try(:admin?) %>
          <li><%= link_to 'Admin Home', admin_petitions_path %></li>
        <%- end %>
-       <% if params[:id] %>
-          <li><a href="#rep_info"><%= @state.name %> Voter Information</a></li>
-        <% end %>
         <%- if current_user -%>
           <li><%= link_to 'Profile', user_path(current_user) %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
@@ -39,6 +35,7 @@
         <% if params[:id] %>
           <li id="side_logo"><h3><a href="/">C</a></h3></li>
           <li><%= link_to 'National Petitions', petitions_path %></li>
+        <% elsif params[:id] && @state %>
           <li><a href="#petitions_div"><%= params[:id] %> Petitions</a></li>
         <% else %>
           <li><%= link_to 'National Petitions', petitions_path %></li>
@@ -46,7 +43,7 @@
       </ul>
     </section>
   </nav>
-</div>
+
 
     <%- flash.each do |key, value| -%>
       <div class="flash flash-<%= key %>">

@@ -127,7 +127,7 @@ end
 
 
 
-if Rails.env.development?
+
   100.times do
     user = User.new(
       username: Faker::Name.name,
@@ -164,5 +164,3 @@ if Rails.env.development?
       signature.save!
     end
   end
-
-end

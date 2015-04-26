@@ -17,7 +17,10 @@
 #state_chart {
   padding-top: 6vh;
   width: 100%;
-  margin-right: 10vh;
+  padding: 10vh;
+  .bubble {
+    position: middle;
+  }
 }
 
 .node {
@@ -25,127 +28,102 @@
 }
 
 .children {
-  fill: $teal;
   opacity: .8;
 }
 
 .budget {
-  fill: $teal;
   opacity: .8;
 }
 
 .oil {
-  fill: $teal;
   opacity: .8;
 }
 
 .class {
-  fill: $teal;
   opacity: .8;
 }
 
 .medicare {
-  fill: $teal;
   opacity: .8;
 }
 
 .welfare {
-  fill: $teal;
   opacity: .8;
 }
 
 .debt {
-  fill: $teal;
   opacity: .8;
 }
 
 .god {
-  fill: $teal;
   opacity: .8;
 }
 
 .regulation {
-  fill: $teal;
   opacity: .8;
 }
 
 .economy {
-  fill: $teal;
   opacity: .8;
 }
 
 .women {
-  fill: $teal;
   opacity: .8;
 }
 
 .poverty {
-  fill: $teal;
   opacity: .8;
 }
 
 .business {
-  fill: $mediumblue;
   opacity: .8;
 }
 
 .jobs {
-  fill: $lightblue;
   opacity: .8;
 }
 
 .health {
-  fill: $offwhite;
   opacity: .8;
 }
 
 .energy {
-  fill: $offwhite;
   opacity: .8;
 }
 
 .workers {
-  fill: $navyblue;
   opacity: .8;
 }
 
 .climate {
-  fill: $mediumblue;
   opacity: .8;
 }
 
 .equality {
-  fill: $chartred;
   opacity: .8;
 }
 
 .families {
-  fill: $lightblue;
   opacity: .8;
 }
 
 .tax {
-  fill: $mediumblue;
   opacity: .8;
 }
 
 .military {
-  fill: $chartred;
   opacity: .8;
 }
 
 .education {
-  fill: $teal;
   opacity: .8;
 }
 
 .immigration {
-  fill: $mediumblue;
   opacity: .8;
 }
 
 .government {
-  fill: $navyblue;
   opacity: .8;
 }
 

@@ -9,6 +9,7 @@ function buildMap() {
         hoverColor: '#3C2200',
         selectedColor: '#FFFFFF',
         enableZoom: false,
+        showTooptip: false,
         onRegionClick: function (event, code, region) {
           color: '#FFFFFF',
           window.location = "states/" + region
