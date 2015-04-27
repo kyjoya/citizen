@@ -4,7 +4,7 @@
   <p><%= @petition.description  %></p>
 
   <% if !current_user.nil? && !@petition.users.include?(current_user) %>
-    <div class="button">
+    <div class="button small radius">
       <%= link_to 'Sign Petition', petition_memberships_path(petition_id: params[:id],
             user: current_user.id, state: @petition.state), method: :post %>
     </div>

@@ -43,6 +43,15 @@
   }
 }
 
+#petition_page .button {
+  float: right;
+  margin: .2em;
+  background: $red;
+    a {
+      color: $offwhite;
+    }
+}
+
 #single_petition {
   border: 1px solid $red;
 }
