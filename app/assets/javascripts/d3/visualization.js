@@ -78,7 +78,7 @@ function buildVisualization() {
 
         node.append("title")
             .text(function(d) {
-                return d.className;
+                return d.className + " Word count: " + d.size;
             });
 
         node.append("circle")
@@ -116,7 +116,7 @@ function buildVisualization() {
           d.scale = scale;
         };
 
-
+// future animation guidance
 // function animateCircle () {
 //   d3.select(this).transition().attr("transform", "r(" + (Math.random() * 1.2) + 10 + ")");
 // };
